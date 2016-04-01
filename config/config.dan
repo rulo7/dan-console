@@ -1,0 +1,10 @@
+entity_package:com/package/;
+mapper_package:com/package/;
+cache_package:com/package/;
+datarepository_package:com/package/;
+datastore_package:com/package/;
+model_package:com/package/;
+repository_package:com/package/;
+usingcase_package:com/package/;
+application-component_path:com/package/ApplicationComponent.java;
+application-module_path:com/package/ApplicationModule.java;
