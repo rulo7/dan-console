@@ -15,72 +15,72 @@ import exceptions.DanKeyNotFoundException;
  */
 public class PathsProvider {
 
-    private static final String ENTITY_PACKAGE_KEY = "entity_package";
+    private static final String ENTITY_PACKAGE_PATH = "entity_package";
 
-    public static String getEntityPackage() throws IOException, DanKeyNotFoundException {
-        return getValueFromDanFile(ENTITY_PACKAGE_KEY);
+    public static String getEntityPath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(ENTITY_PACKAGE_PATH).replace(".", "/");
     }
 
-    private static final String MAPPER_PACKAGE_KEY = "mapper_package";
+    private static final String MAPPER_PACKAGE_PATH = "mapper_package";
 
-    public static String getMapperPackage() throws IOException, DanKeyNotFoundException {
-        return getValueFromDanFile(MAPPER_PACKAGE_KEY);
+    public static String getMapperPath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(MAPPER_PACKAGE_PATH).replace(".", "/");
     }
 
-    private static final String CACHE_PACKAGE_KEY = "cache_package";
+    private static final String CACHE_PACKAGE_PATH = "cache_package";
 
-    public static String getCachePackage() throws IOException, DanKeyNotFoundException {
-        return getValueFromDanFile(CACHE_PACKAGE_KEY);
+    public static String getCachePath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(CACHE_PACKAGE_PATH).replace(".", "/");
     }
 
-    private static final String DATAREPOSITORY_PACKAGE_KEY = "datarepository_package";
+    private static final String DATAREPOSITORY_PACKAGE_PATH = "datarepository_package";
 
-    public static String getDataRepositoryPackage() throws IOException, DanKeyNotFoundException {
-        return getValueFromDanFile(DATAREPOSITORY_PACKAGE_KEY);
+    public static String getDataRepositoryPath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(DATAREPOSITORY_PACKAGE_PATH).replace(".", "/");
     }
 
-    private static final String DATASTORE_PACKAGE_KEY = "datastore_package";
+    private static final String DATASTORE_PACKAGE_PATH = "datastore_package";
 
-    public static String getDataStorePackage() throws IOException, DanKeyNotFoundException {
-        return getValueFromDanFile(DATASTORE_PACKAGE_KEY);
+    public static String getDataStorePath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(DATASTORE_PACKAGE_PATH).replace(".", "/");
     }
 
-    private static final String MODEL_PACKAGE_KEY = "model_package";
+    private static final String MODEL_PACKAGE_PATH = "model_package";
 
-    public static String getModelPackage() throws IOException, DanKeyNotFoundException {
-        return getValueFromDanFile(MODEL_PACKAGE_KEY);
+    public static String getModelPath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(MODEL_PACKAGE_PATH).replace(".", "/");
     }
 
-    private static final String REPOSITORY_PACKAGE_KEY = "repository_package";
+    private static final String REPOSITORY_PACKAGE_PATH = "repository_package";
 
-    public static String getRepositoryPackage() throws IOException, DanKeyNotFoundException {
-        return getValueFromDanFile(REPOSITORY_PACKAGE_KEY);
+    public static String getRepositoryPath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(REPOSITORY_PACKAGE_PATH).replace(".", "/");
     }
 
-    private static final String USINGCASE_PACKAGE_KEY = "usingcase_package";
+    private static final String USINGCASE_PACKAGE_PATH = "usingcase_package";
 
-    public static String getUsingCasePackage() throws IOException, DanKeyNotFoundException {
-        return getValueFromDanFile(USINGCASE_PACKAGE_KEY);
+    public static String getUsingCasePath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(USINGCASE_PACKAGE_PATH).replace(".", "/");
     }
 
-    private static final String APPLICATIONCOMPONENT_PATH_KEY = "application-component_path";
+    private static final String APPLICATIONCOMPONENT_PATH_PATH = "application-component_path";
 
     public static String getApplicationComponentPath() throws IOException, DanKeyNotFoundException {
-        return getValueFromDanFile(APPLICATIONCOMPONENT_PATH_KEY);
+        return getValueFromDanFile(APPLICATIONCOMPONENT_PATH_PATH).replace(".", "/");
     }
 
-    private static final String APPLICATIONMODULE_PATH_KEY = "application-module_path";
+    private static final String APPLICATIONMODULE_PATH_PATH = "application-module_path";
 
     public static String getApplicationModulePath() throws IOException, DanKeyNotFoundException {
-        return getValueFromDanFile(APPLICATIONMODULE_PATH_KEY);
+        return getValueFromDanFile(APPLICATIONMODULE_PATH_PATH).replace(".", "/");
     }
 
-    private static final String CONFIG_PATH = "config/";
-    private static final String CONFIG_NAME = "config.dan";
+    public static final String CONFIG_PATH = "config/";
+    public static final String CONFIG_NAME = "config.dan";
     private static final String ROW_DELIMITATOR = ";";
     private static final String KEY_VALUE_DELIMITATOR = ":";
 
-    public static String getValueFromDanFile(String key) throws IOException, DanKeyNotFoundException {
+    private static String getValueFromDanFile(String key) throws IOException, DanKeyNotFoundException {
         File f = FileManager.createFile(CONFIG_PATH, CONFIG_NAME);
         String danText = FileManager.readFile(f);
         for (String danRow : danText.split(ROW_DELIMITATOR)) {

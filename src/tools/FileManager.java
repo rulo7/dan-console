@@ -21,7 +21,17 @@ public class FileManager {
     public static File createFile(String path, String name) throws IOException {
         // Use relative path for Unix systems
         File f = new File(path + name);
+        f.mkdirs();
         f.createNewFile();
+        return f;
+    }
+    
+    public static File getFile(String path, String name) throws IOException {
+        // Use relative path for Unix systems
+        File f = new File(path + name);
+        if(!f.exists())
+            throw new FileNotFoundException("The file given does not exists");
+            
         return f;
     }
 
