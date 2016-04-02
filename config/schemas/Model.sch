@@ -1,4 +1,4 @@
-package _model_package_;
+package _packagename_;
 
 public class _Entityname_ {
     private int id;

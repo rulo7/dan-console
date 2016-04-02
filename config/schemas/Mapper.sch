@@ -1,4 +1,4 @@
-package _mapper_package_;
+package _packagename_;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

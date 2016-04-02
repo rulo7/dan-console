@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class SchemasProvider {
 
-    public static final String SCHEMAS_PATH = PathsProvider.CONFIG_PATH + "schemas/";
+    public static final String SCHEMAS_PATH = DanFileProvider.CONFIG_PATH + "schemas/";
 
     private static final String ENTITY_SCH = "Entity.sch";
 

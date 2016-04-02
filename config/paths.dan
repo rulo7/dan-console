@@ -1,0 +1,10 @@
+entity_path:data/src/java/es.company.app.data/entity/;
+mapper_path:data/src/java/es.company.app.data/entity/mappercache/;
+cache_path:data/src/java/es.company.app.data/cache/;
+datarepository_path:data/src/java/es.company.app.data/repository/;
+datastore_path:data/src/java/es.company.app.data/repository/datasource/;
+model_path:domain/src/java/es.company.app.domain/model/;
+repository_path:domain/src/java/es.company.app.domain/repository/;
+usingcase_path:domain/src/java/es.company.app.domain/interactor/;
+application-component_path:presentation/src/java/es.company.app.presentation/internal/di/components/ApplicationComponent.java;
+application-module_path:presentation/src/java/es.company.app.presentation/internal/di/modules/ApplicationModule.java;

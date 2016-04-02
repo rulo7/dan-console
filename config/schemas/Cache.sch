@@ -1,4 +1,4 @@
-package _cache_package_;
+package _packagename_;
 
 import android.content.Context;
 import java.io.File;

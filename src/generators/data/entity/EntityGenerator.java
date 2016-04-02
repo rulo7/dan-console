@@ -10,5 +10,8 @@ package generators.data.entity;
  * @author raulcobos
  */
 public class EntityGenerator {
-    
+
+    public void generateEntityClass(String entityname) {
+        
+    }
 }

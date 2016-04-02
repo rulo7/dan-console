@@ -6,12 +6,10 @@
 package main;
 
 import exceptions.DanKeyNotFoundException;
-import tools.FileManager;
-import java.io.File;
+import generators.Generator;
+import generators.data.cache.CacheGenerator;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import tools.PackagesProvider;
 import tools.PathsProvider;
 import tools.SchemasProvider;
@@ -27,6 +25,12 @@ public class DanConsole {
         System.out.println("Pls, write the model name: ");
         String entity = in.nextLine();
 
+        Generator[] generators = {new CacheGenerator()};
+        for (Generator generator : generators) {
+            generator.generate(entity);
+        }
+
+        /*
         try {
             System.out.println("Packages");
             System.out.println(PackagesProvider.getEntityPackage());
@@ -36,8 +40,6 @@ public class DanConsole {
             System.out.println(PackagesProvider.getDataStorePackage());
             System.out.println(PackagesProvider.getRepositoryPackage());
             System.out.println(PackagesProvider.getUsingCasePackage());
-            System.out.println(PackagesProvider.getApplicationComponentPackage());
-            System.out.println(PackagesProvider.getApplicationModulePackage());
 
             System.out.println("Paths");
             System.out.println(PathsProvider.getEntityPath());
@@ -59,11 +61,9 @@ public class DanConsole {
             System.out.println(SchemasProvider.getRepositorySchema());
             System.out.println(SchemasProvider.getUsingCaseSchema());
 
-        } catch (IOException ex) {
-            System.err.println(ex.getMessage());
-        } catch (DanKeyNotFoundException ex) {
+        } catch (IOException | DanKeyNotFoundException ex) {
             System.err.println(ex.getMessage());
         }
-
+         */
     }
 }

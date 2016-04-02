@@ -1,0 +1,9 @@
+app_package_name:es.company.app;
+entity_package:data.entity;
+mapper_package:data.entity.mappercache;
+cache_package:data.cache;
+datarepository_package:data.repository;
+datastore_package:data.repository.datasource;
+model_package:domain.model;
+repository_package:domain.repository;
+usingcase_package:domain.interactor;
