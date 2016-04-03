@@ -69,4 +69,16 @@ public class PackagesProvider extends DanFileProvider {
     public static String getUsingCasePackage() throws IOException, DanKeyNotFoundException {
         return getValueFromDanFile(USINGCASE_PACKAGE_KEY, PACKAGES_FILE);
     }
+
+    private static final String APPLICATIONCOMPONENT_PACKAGE_KEY = "application-component_package";
+
+    public static String getApplicationComponentPackage() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(APPLICATIONCOMPONENT_PACKAGE_KEY, PACKAGES_FILE);
+    }
+
+    private static final String APPLICATIONMODULE_PATH_KEY = "application-module_package";
+
+    public static String getApplicationModulePackage() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(APPLICATIONMODULE_PATH_KEY, PACKAGES_FILE);
+    }
 }

@@ -26,13 +26,9 @@ public class FileManager {
         return f;
     }
 
-    public static File getFile(String path, String name) throws IOException {
+    public static File getFile(String path, String name) {
         // Use relative path for Unix systems
         File f = new File(path + name);
-        if (!f.exists()) {
-            throw new FileNotFoundException("The file given does not exists");
-        }
-
         return f;
     }
 

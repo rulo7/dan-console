@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
-import exceptions.DanKeyNotFoundException;
 import generators.Generator;
 import generators.data.cache.CacheGenerator;
-import java.io.IOException;
+import generators.presentation.ApplicationComponentGenerator;
+import generators.presentation.ApplicationModuleGenerator;
 import java.util.Scanner;
-import tools.PackagesProvider;
-import tools.PathsProvider;
-import tools.SchemasProvider;
 
 /**
  *
@@ -25,7 +17,7 @@ public class DanConsole {
         System.out.println("Pls, write the model name: ");
         String entity = in.nextLine();
 
-        Generator[] generators = {new CacheGenerator()};
+        Generator[] generators = {new CacheGenerator(), new ApplicationComponentGenerator(), new ApplicationModuleGenerator()};
         for (Generator generator : generators) {
             generator.generate(entity);
         }

@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import overriders.SchemaOverrider;
 import tools.FileManager;
-import tools.PathsProvider;
 
 /**
  *
@@ -38,7 +37,7 @@ public abstract class Generator {
 
     public abstract String getPostFixClass();
 
-    private File createClassFile(String entityName) throws IOException, DanKeyNotFoundException {
+    protected File createClassFile(String entityName) throws IOException, DanKeyNotFoundException {
         return FileManager.createFile(getClassPath(), entityName + getPostFixClass());
     }
 }

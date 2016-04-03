@@ -63,4 +63,16 @@ public class SchemasProvider {
     public static String getUsingCaseSchema() throws IOException, DanKeyNotFoundException {
         return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, USINGCASE_SCH));
     }
+
+    private static final String APPLICATIONCOMPONENT_SCH = "ApplicationComponent.sch";
+
+    public static String getApplicationComponentSchema() throws IOException, DanKeyNotFoundException {
+        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, APPLICATIONCOMPONENT_SCH));
+    }
+
+    private static final String APPLICATIONMODULE_SCH = "ApplicationModule.sch";
+
+    public static String getApplicationModuleSchema() throws IOException, DanKeyNotFoundException {
+        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, APPLICATIONMODULE_SCH));
+    }
 }

@@ -5,10 +5,30 @@
  */
 package generators.domain.repository;
 
+import exceptions.DanKeyNotFoundException;
+import generators.Generator;
+import java.io.IOException;
+import overriders.SchemaOverrider;
+
 /**
  *
  * @author raulcobos
  */
-public class RepositoryGenerator {
+public class RepositoryGenerator extends Generator{
+
+    @Override
+    public SchemaOverrider getOverrider() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getClassPath() throws IOException, DanKeyNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getPostFixClass() {
+        return "Repository.java";
+    }
     
 }
