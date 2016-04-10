@@ -16,7 +16,7 @@ buildscript {
 
 allprojects {
     ext {
-        androidApplicationId = 'es.sepla.app.presentation'
+        androidApplicationId = 'es.raul.app.presentation'
         androidVersionCode = 1
         androidVersionName = "1.0"
     }
