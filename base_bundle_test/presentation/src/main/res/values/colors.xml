@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary">#020b25</color>
+    <color name="toolbar_color">#020b25</color>
+    <color name="white">@android:color/white</color>
+    <color name="white_opacity_10">#10FFFFFF</color>
+    <color name="white_opacity_40">#66FFFFFF</color>
+    <color name="white_opacity_60">#99FFFFFF</color>
+    <color name="black">@android:color/black</color>
+    <color name="black_opacity_40">#66121212</color>
+    <color name="black_opacity_60">#99121212</color>
+
+</resources>

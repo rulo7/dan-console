@@ -1,0 +1,32 @@
+apply from: 'config/buildsystem/ci.gradle'
+apply from: 'config/buildsystem/dependencies.gradle'
+apply from: 'config/quality/generateReports.gradle'
+
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.0-alpha5'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
+}
+
+allprojects {
+    ext {
+        androidApplicationId = 'es.raul.app.presentation'
+        androidVersionCode = 1
+        androidVersionName = "1.0"
+    }
+    repositories {
+        maven { url "https://clojars.org/repo/" }
+        maven { url 'http://dev.open-rnd.net:30844/content/groups/public/' }
+    }
+
+    task wrapper(type: Wrapper) {
+        description 'Creates the gradle wrapper.'
+        gradleVersion '2.8'
+    }
+}

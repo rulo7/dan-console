@@ -1,4 +1,4 @@
-app_package_name:es.company.app;
+app_package_name:es.raul.app;
 entity_package:data.entity;
 mapper_package:data.entity.mappercache;
 cache_package:data.cache;
