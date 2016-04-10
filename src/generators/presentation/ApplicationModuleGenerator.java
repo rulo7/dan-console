@@ -54,7 +54,6 @@ public class ApplicationModuleGenerator extends Generator {
     private void addImportsAndInjections(String entityName, File f) throws IOException, DanKeyNotFoundException {
         String readFile = FileManager.readFile(f);
         String modelClassName = entityName.substring(0, 1).toUpperCase() + entityName.substring(1);
-        String modelName = entityName.substring(0, 1).toLowerCase() + entityName.substring(1);
         String importEntityRepository = "import " + PackagesProvider.getAppPackage() + "." + PackagesProvider.getRepositoryPackage() + "." + modelClassName + "Repository;";
         String importEntityDataRepository = "import " + PackagesProvider.getAppPackage() + "." + PackagesProvider.getDataRepositoryPackage() + "." + modelClassName + "DataRepository;";
 

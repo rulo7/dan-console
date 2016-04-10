@@ -46,6 +46,24 @@ public class SchemasProvider {
         return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, DATASTORE_SCH));
     }
 
+    private static final String CLOUDDATASTORE_SCH = "CloudDataStore.sch";
+
+    public static String getCloudDataStoreSchema() throws IOException, DanKeyNotFoundException {
+        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, CLOUDDATASTORE_SCH));
+    }
+
+    private static final String DISKDATASTORE_SCH = "DiskDataStore.sch";
+
+    public static String getDiskDataStoreSchema() throws IOException, DanKeyNotFoundException {
+        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, DISKDATASTORE_SCH));
+    }
+
+    private static final String DATAFACTORY_SCH = "DataFactory.sch";
+
+    public static String getDataFactoryStoreSchema() throws IOException, DanKeyNotFoundException {
+        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, DATAFACTORY_SCH));
+    }
+
     private static final String MODEL_SCH = "Model.sch";
 
     public static String getModelSchema() throws IOException, DanKeyNotFoundException {

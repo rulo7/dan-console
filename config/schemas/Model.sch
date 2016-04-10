@@ -1,4 +1,4 @@
-package _packagename_;
+package _app_package_name_._packagename_;
 
 public class _Entityname_ {
     private int id;

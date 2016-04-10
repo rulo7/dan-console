@@ -1,9 +1,9 @@
-package _packagename_;
+package _app_package_name_._packagename_;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import _entity_package_._Entityname_Entity;
-import _model_package_._Entityname;
+import _app_package_name_._entity_package_._Entityname_Entity;
+import _app_package_name_._model_package_._Entityname;
 import _app_package_name_.data.entity.mapper.DataCache;
 
 @Singleton
