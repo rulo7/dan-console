@@ -11,7 +11,6 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.0-alpha5'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        classpath "com.fernandocejas.frodo:frodo-plugin:0.8.2"
     }
 }
 
@@ -20,8 +19,6 @@ allprojects {
         androidApplicationId = 'es.sepla.app.presentation'
         androidVersionCode = 1
         androidVersionName = "1.0"
-        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-        testApplicationId = 'es.sepla.app.presentation.test'
     }
     repositories {
         maven { url "https://clojars.org/repo/" }
@@ -31,28 +28,5 @@ allprojects {
     task wrapper(type: Wrapper) {
         description 'Creates the gradle wrapper.'
         gradleVersion '2.8'
-    }
-
-    task runDomainUnitTests(dependsOn: [':domain:test']) {
-        description 'Run unit tests for the domain layer.'
-    }
-
-    task runDataUnitTests(dependsOn: [':data:cleanTestDebugUnitTest', ':data:testDebugUnitTest']) {
-        description 'Run unit tests for the data layer.'
-    }
-
-    task runPresentationUnitTests(dependsOn: [':presentation:cleanTestDebugUnitTest', ':presentation:testDebugUnitTest']) {
-        description 'Run unit tests for the presentation layer.'
-    }
-    task runUnitTests(dependsOn: ['runPresentationUnitTests', 'runDomainUnitTests', 'runDataUnitTests']) {
-        description 'Run unit tests for presentation, domain and data layers.'
-    }
-
-    task runAcceptanceTests(dependsOn: [':presentation:connectedAndroidTest']) {
-        description 'Run application acceptance tests.'
-    }
-
-    task runTests(dependsOn: ['runUnitTests', ':presentation:connectedAndroidTest']) {
-        description 'Run all tests.'
     }
 }

@@ -10,7 +10,6 @@ buildscript {
 
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'com.fernandocejas.frodo'
 apply plugin: 'me.tatarka.retrolambda'
 apply from: '../config/quality.gradle'
 
@@ -27,8 +26,6 @@ android {
         applicationId globalConfiguration.getAt("androidApplicationId")
         versionCode globalConfiguration.getAt("androidVersionCode")
         versionName globalConfiguration.getAt("androidVersionName")
-        testInstrumentationRunner globalConfiguration.getAt("testInstrumentationRunner")
-        testApplicationId globalConfiguration.getAt("testApplicationId")
     }
 
     compileOptions {
