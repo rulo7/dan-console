@@ -2,6 +2,7 @@ package es.sepla.app.data.local;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,16 +17,11 @@ import java.io.OutputStream;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import timber.log.Timber;
-
 /**
  * Created by djuarez on 21/3/16.
  */
-
 @Singleton
 public class FileManager {
-
-    private static final String LOG_TAG = FileManager.class.getSimpleName();
 
     @Inject
     public FileManager() {
@@ -38,7 +34,7 @@ public class FileManager {
             writer.write(fileContent);
             writer.close();
         } catch (IOException e) {
-            Timber.e(e, LOG_TAG);
+            Log.e(FileManager.class.getSimpleName(), e.getMessage());
         }
     }
 
@@ -53,7 +49,7 @@ public class FileManager {
             outputStream.close();
             inputStream.close();
         } catch (IOException e) {
-            Timber.e(e, LOG_TAG);
+            Log.e(FileManager.class.getSimpleName(), e.getMessage());
         }
     }
 
@@ -70,7 +66,7 @@ public class FileManager {
                 bufferedReader.close();
                 fileReader.close();
             } catch (IOException e) {
-                Timber.e(e, LOG_TAG);
+                Log.e(FileManager.class.getSimpleName(), e.getMessage());
             }
         }
         return fileContentBuilder.toString();
@@ -109,7 +105,7 @@ public class FileManager {
             }
             bufferedReader.close();
         } catch (IOException e) {
-            Timber.e(e, LOG_TAG);
+            Log.e(FileManager.class.getSimpleName(), e.getMessage());
         }
 
         return total.toString();

@@ -19,7 +19,6 @@ import es.sepla.app.presentation.internal.di.components.FragmentComponent;
 import es.sepla.app.presentation.internal.di.modules.FragmentModule;
 import es.sepla.app.presentation.ui.Presenter;
 import icepick.Icepick;
-import timber.log.Timber;
 
 public abstract class BaseDialogFragment extends DialogFragment {
 
@@ -29,7 +28,6 @@ public abstract class BaseDialogFragment extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Timber.i("[onCreate]");
         FragmentComponent component = DaggerFragmentComponent.builder()
                 .applicationComponent(((AndroidApplication) getActivity().getApplication()).getComponent())
                 .fragmentModule(new FragmentModule(this))
@@ -48,7 +46,6 @@ public abstract class BaseDialogFragment extends DialogFragment {
     @Override
     public void onResume() {
         super.onResume();
-        Timber.i("[onResume]");
         if (getPresenter() != null) {
             getPresenter().onResume();
         }
@@ -100,7 +97,6 @@ public abstract class BaseDialogFragment extends DialogFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Timber.i("[onActivityResult]");
         if (getPresenter() != null) {
             getPresenter().onActivityResult(requestCode, resultCode, data);
         }

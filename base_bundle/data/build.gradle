@@ -83,5 +83,4 @@ dependencies {
     compile dataDependencies.rxAndroid
     compile dataDependencies.supportAnnotations
     compile dataDependencies.okHttpLoggingInterceptor
-    compile presentationDependencies.timber
 }

@@ -23,7 +23,6 @@ ext {
     calligraphyVersion = '2.1.0'
     icepickVersion = '3.2.0'
     glideVersion = '3.7.0'
-    timberVersion = '4.1.1'
     okHttpVersion = '3.2.0'
     dexterVersion = '2.2.2'
 
@@ -42,7 +41,6 @@ ext {
                                 icepick            : "frankiesardo:icepick:${icepickVersion}",
                                 icepickProcessor   : "frankiesardo:icepick-processor:${icepickVersion}",
                                 glide              : "com.github.bumptech.glide:glide:${glideVersion}",
-                                timber             : "com.jakewharton.timber:timber:${timberVersion}",
                                 dexter             : "com.karumi:dexter:${dexterVersion}"]
 
     domainDependencies = [daggerCompiler : "com.google.dagger:dagger-compiler:${daggerVersion}",

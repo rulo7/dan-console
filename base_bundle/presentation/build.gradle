@@ -92,7 +92,6 @@ dependencies {
     compile presentationDependencies.rxAndroid
     compile presentationDependencies.calligraphy
     compile presentationDependencies.glide
-    compile presentationDependencies.timber
     compile presentationDependencies.icepick
     provided presentationDependencies.icepickProcessor
     provided presentationDependencies.javaxAnnotation

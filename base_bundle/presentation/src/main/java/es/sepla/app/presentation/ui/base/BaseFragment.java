@@ -14,6 +14,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -31,7 +32,6 @@ import es.sepla.app.presentation.internal.di.modules.FragmentModule;
 import es.sepla.app.presentation.ui.LoadDataView;
 import es.sepla.app.presentation.ui.Presenter;
 import icepick.Icepick;
-import timber.log.Timber;
 
 /**
  * Base {@link Fragment} class for every fragment in this application.
@@ -158,7 +158,7 @@ public abstract class BaseFragment extends Fragment implements LoadDataView {
         try {
             Snackbar.make(getView(), message, Snackbar.LENGTH_LONG).show();
         } catch (Exception e) {
-            Timber.e(TAG, e);
+            Log.e(TAG, e.getMessage());
         }
     }
 
@@ -168,7 +168,7 @@ public abstract class BaseFragment extends Fragment implements LoadDataView {
             upArrow.setColorFilter(ContextCompat.getColor(getContext(), colorId), PorterDuff.Mode.SRC_ATOP);
             ((BaseActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(upArrow);
         } catch (Exception e) {
-            Timber.e(TAG, e);
+            Log.e(TAG, e.getMessage());
         }
     }
 

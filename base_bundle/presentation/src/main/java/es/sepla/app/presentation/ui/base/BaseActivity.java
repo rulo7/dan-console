@@ -16,6 +16,7 @@ import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
@@ -37,7 +38,6 @@ import es.sepla.app.presentation.navigation.Navigator;
 import es.sepla.app.presentation.ui.Presenter;
 import icepick.Icepick;
 import icepick.State;
-import timber.log.Timber;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
@@ -250,7 +250,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         try {
             Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG).show();
         } catch (Exception e) {
-            Timber.e(TAG, e);
+            Log.e(TAG, e.getMessage());
         }
     }
 
@@ -260,7 +260,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             upArrow.setColorFilter(ContextCompat.getColor(this, colorId), PorterDuff.Mode.SRC_ATOP);
             getSupportActionBar().setHomeAsUpIndicator(upArrow);
         } catch (Exception e) {
-            Timber.e(TAG, e);
+            Log.e(TAG, e.getMessage());
         }
     }
 

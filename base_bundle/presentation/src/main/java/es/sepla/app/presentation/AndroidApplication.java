@@ -18,9 +18,12 @@ package es.sepla.app.presentation;
 import android.app.Application;
 import android.content.Context;
 
-import es.sepla.app.data.BuildConfig;
+import com.karumi.dexter.Dexter;
+
 import es.sepla.app.presentation.internal.di.components.ApplicationComponent;
+import es.sepla.app.presentation.internal.di.components.DaggerApplicationComponent;
 import es.sepla.app.presentation.internal.di.modules.ApplicationModule;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Android Main Application
@@ -38,7 +41,6 @@ public class AndroidApplication extends Application {
         super.onCreate();
         initInjector();
         initCaligraphy();
-        initTimber();
         initDexter();
     }
 
@@ -46,13 +48,6 @@ public class AndroidApplication extends Application {
         Dexter.initialize(this);
     }
 
-    private void initTimber() {
-        if (BuildConfig.DEBUG) {
-            Timber.plant(new Timber.DebugTree());
-        } else {
-            Timber.plant(new CrashReportingTree());
-        }
-    }
 
     private void initCaligraphy() {
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath(getString(R.string.font_type))
