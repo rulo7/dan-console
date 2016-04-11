@@ -4,6 +4,6 @@ import _app_package_name_._entity_package_._Entityname_Entity;
 import java.util.List;
 import rx.Observable;
 
-public interface _EntityName_DataStore {
-    Observable<List<_EntityName_Entity>> _entityName_();
+public interface _Entityname_DataStore {
+    Observable<List<_Entityname_Entity>> _entityname_();
 }

@@ -5,10 +5,32 @@
  */
 package generators.data.datastore.imp;
 
+import exceptions.DanKeyNotFoundException;
+import generators.Generator;
+import java.io.IOException;
+import overriders.SchemaOverrider;
+import overriders.data.datastore.imp.DiskDataStoreSchemaOverrider;
+import tools.PathsProvider;
+
 /**
  *
  * @author raulcobos
  */
-public class DiskDataStoreGenerator {
+public class DiskDataStoreGenerator extends Generator{
+
+    @Override
+    public SchemaOverrider getOverrider() {
+        return new DiskDataStoreSchemaOverrider();
+    }
+
+    @Override
+    public String getClassPath() throws IOException, DanKeyNotFoundException{
+        return PathsProvider.getDataStorePath();
+    }
+
     
+    @Override
+    public String getPostFixClass() {
+        return "DiskDataStore.java";
+    }
 }

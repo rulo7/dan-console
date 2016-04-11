@@ -1,13 +1,13 @@
 package _app_package_name_._packagename_;
 
-import _app_package_name_._datastore_package_._EntityName_DataStore;
-import _app_package_name_._mapper_package_._EntityName_Cache;
+import _app_package_name_._datastore_package_._Entityname_DataStore;
+import _app_package_name_._mapper_package_._Entityname_Cache;
 import _app_package_name_.data.net.RestApi;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-public class EntryDataFactory {
+public class _Entityname_DataFactory {
 
     private RestApi restApi;
     private _Entityname_Cache cache;
@@ -19,11 +19,11 @@ public class EntryDataFactory {
     }
 
     public _Entityname_DataStore createCloudDataStore() {
-        return new Cloud_Entityname_DataStore(restApi, cache);
+        return new _Entityname_CloudDataStore(restApi, cache);
     }
 
-    public _Entityname_DataStore createLocalDataStore() {
-        return new Disk_Entityname_DataStore(cache);
+    public _Entityname_DiskDataStore createLocalDataStore() {
+        return new _Entityname_DiskDataStore(cache);
     }
 }
 

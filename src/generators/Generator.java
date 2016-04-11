@@ -38,6 +38,6 @@ public abstract class Generator {
     public abstract String getPostFixClass();
 
     protected File createClassFile(String entityName) throws IOException, DanKeyNotFoundException {
-        return FileManager.createFile(getClassPath(), entityName + getPostFixClass());
+        return FileManager.createFile(getClassPath(), (entityName.substring(0, 1).toUpperCase() + entityName.substring(1)) + getPostFixClass());
     }
 }

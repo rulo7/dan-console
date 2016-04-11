@@ -3,34 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package generators.data.entity;
+package generators.data.datastore;
 
 import exceptions.DanKeyNotFoundException;
 import generators.Generator;
 import java.io.IOException;
 import overriders.SchemaOverrider;
-import overriders.data.entity.EntitySchemaOverrider;
+import overriders.data.datastore.imp.DataFactorySchemaOverrider;
 import tools.PathsProvider;
 
 /**
  *
  * @author raulcobos
  */
-public class EntityGenerator extends Generator{
+public class DataFactoryGenerator extends Generator{
 
     @Override
     public SchemaOverrider getOverrider() {
-        return new EntitySchemaOverrider();
+        return new DataFactorySchemaOverrider();
     }
 
     @Override
     public String getClassPath() throws IOException, DanKeyNotFoundException{
-        return PathsProvider.getEntityPath();
+        return PathsProvider.getDataStorePath();
     }
 
     
     @Override
     public String getPostFixClass() {
-        return "Entity.java";
+        return "DataFactory.java";
     }
 }

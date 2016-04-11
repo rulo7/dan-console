@@ -5,10 +5,32 @@
  */
 package generators.data.datastore;
 
+import exceptions.DanKeyNotFoundException;
+import generators.Generator;
+import java.io.IOException;
+import overriders.SchemaOverrider;
+import overriders.data.datastore.DataStoreSchemaOverrider;
+import tools.PathsProvider;
+
 /**
  *
  * @author raulcobos
  */
-public class DataStoreGenerator {
+public class DataStoreGenerator extends Generator{
+
+    @Override
+    public SchemaOverrider getOverrider() {
+        return new DataStoreSchemaOverrider();
+    }
+
+    @Override
+    public String getClassPath() throws IOException, DanKeyNotFoundException{
+        return PathsProvider.getDataStorePath();
+    }
+
     
+    @Override
+    public String getPostFixClass() {
+        return "DataStore.java";
+    }
 }
