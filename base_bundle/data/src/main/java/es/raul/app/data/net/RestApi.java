@@ -4,11 +4,9 @@ package es.raul.app.data.net;
  */
 
 import com.google.gson.Gson;
-
+import es.sepla.app.data.BuildConfig;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import es.raul.app.data.BuildConfig;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

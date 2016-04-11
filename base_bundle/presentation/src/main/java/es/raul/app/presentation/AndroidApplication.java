@@ -17,12 +17,11 @@ package es.raul.app.presentation;
 
 import android.app.Application;
 import android.content.Context;
-
 import com.karumi.dexter.Dexter;
-
 import es.raul.app.presentation.internal.di.components.ApplicationComponent;
 import es.raul.app.presentation.internal.di.components.DaggerApplicationComponent;
 import es.raul.app.presentation.internal.di.modules.ApplicationModule;
+import es.sepla.app.presentation.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**

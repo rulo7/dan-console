@@ -18,9 +18,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import java.util.List;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import es.raul.app.presentation.AndroidApplication;
@@ -30,7 +27,9 @@ import es.raul.app.presentation.internal.di.components.FragmentComponent;
 import es.raul.app.presentation.internal.di.modules.FragmentModule;
 import es.raul.app.presentation.ui.LoadDataView;
 import es.raul.app.presentation.ui.Presenter;
+import es.sepla.app.presentation.R;
 import icepick.Icepick;
+import java.util.List;
 
 /**
  * Base {@link Fragment} class for every fragment in this application.
@@ -42,13 +41,13 @@ public abstract class BaseFragment extends Fragment implements LoadDataView {
     protected boolean isTablet;
 
     @Nullable
-    @Bind(es.raul.app.presentation.R.id.toolbar)
+    @Bind(R.id.toolbar)
     protected Toolbar toolbar;
     @Nullable
-    @Bind(es.raul.app.presentation.R.id.progress)
+    @Bind(R.id.progress)
     protected RelativeLayout progress;
     @Nullable
-    @Bind(es.raul.app.presentation.R.id.empty)
+    @Bind(R.id.empty)
     protected RelativeLayout empty;
     protected Snackbar snackbarRetry;
     protected Snackbar snackbarUpdatedNotification;
@@ -56,7 +55,7 @@ public abstract class BaseFragment extends Fragment implements LoadDataView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        isTablet = getResources().getBoolean(es.raul.app.presentation.R.bool.isTablet);
+        isTablet = getResources().getBoolean(R.bool.isTablet);
         FragmentComponent component = DaggerFragmentComponent.builder()
                 .applicationComponent(((AndroidApplication) getActivity().getApplication()).getComponent())
                 .fragmentModule(new FragmentModule(this))
@@ -163,7 +162,7 @@ public abstract class BaseFragment extends Fragment implements LoadDataView {
 
     protected void changeColorBackButton(int colorId) {
         try {
-            Drawable upArrow = ContextCompat.getDrawable(getContext(), es.raul.app.presentation.R.drawable.abc_ic_ab_back_material);
+            Drawable upArrow = ContextCompat.getDrawable(getContext(), R.drawable.abc_ic_ab_back_material);
             upArrow.setColorFilter(ContextCompat.getColor(getContext(), colorId), PorterDuff.Mode.SRC_ATOP);
             ((BaseActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(upArrow);
         } catch (Exception e) {
@@ -206,7 +205,7 @@ public abstract class BaseFragment extends Fragment implements LoadDataView {
     @Override
     public void showRetry(String msg) {
         snackbarRetry = Snackbar.make(getView(), msg, Snackbar.LENGTH_LONG)
-                .setAction(getString(es.raul.app.presentation.R.string.retry).toUpperCase(), view -> {
+                .setAction(getString(R.string.retry).toUpperCase(), view -> {
                     if (getPresenter() != null) {
                         getPresenter().retry();
                     }
@@ -224,8 +223,8 @@ public abstract class BaseFragment extends Fragment implements LoadDataView {
 
     @Override
     public void showUpdatedNotification() {
-        snackbarUpdatedNotification = Snackbar.make(getView(), es.raul.app.presentation.R.string.updated_notification, Snackbar.LENGTH_LONG)
-                .setAction(getString(es.raul.app.presentation.R.string.hide).toUpperCase(), view -> hideUdpatedNotification());
+        snackbarUpdatedNotification = Snackbar.make(getView(), R.string.updated_notification, Snackbar.LENGTH_LONG)
+                .setAction(getString(R.string.hide).toUpperCase(), view -> hideUdpatedNotification());
         snackbarUpdatedNotification.setDuration(Snackbar.LENGTH_LONG);
         snackbarUpdatedNotification.show();
     }

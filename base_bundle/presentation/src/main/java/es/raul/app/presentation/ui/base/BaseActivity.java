@@ -21,23 +21,20 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import es.raul.app.presentation.AndroidApplication;
 import es.raul.app.presentation.internal.di.ComponentReflectionInjector;
-import es.raul.app.presentation.ui.Presenter;
-import es.raul.app.presentation.R;
 import es.raul.app.presentation.internal.di.components.ActivityComponent;
 import es.raul.app.presentation.internal.di.components.DaggerActivityComponent;
 import es.raul.app.presentation.internal.di.modules.ActivityModule;
 import es.raul.app.presentation.navigation.Navigator;
+import es.raul.app.presentation.ui.Presenter;
+import es.sepla.app.presentation.R;
 import icepick.Icepick;
 import icepick.State;
+import java.util.List;
+import javax.inject.Inject;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
