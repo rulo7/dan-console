@@ -21,7 +21,6 @@ import com.karumi.dexter.Dexter;
 import es.raul.app.presentation.internal.di.components.ApplicationComponent;
 import es.raul.app.presentation.internal.di.components.DaggerApplicationComponent;
 import es.raul.app.presentation.internal.di.modules.ApplicationModule;
-import es.sepla.app.presentation.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
@@ -46,7 +45,6 @@ public class AndroidApplication extends Application {
     private void initDexter() {
         Dexter.initialize(this);
     }
-
 
     private void initCaligraphy() {
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath(getString(R.string.font_type))

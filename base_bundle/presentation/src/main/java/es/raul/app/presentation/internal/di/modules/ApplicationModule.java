@@ -66,6 +66,6 @@ public class ApplicationModule {
     @Provides
     @Singleton
     SharedPreferences provideSharedPreferences() {
-        return androidApplication.getSharedPreferences("SEPLA", Context.MODE_APPEND);
+        return androidApplication.getSharedPreferences("app", Context.MODE_APPEND);
     }
 }

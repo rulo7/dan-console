@@ -21,13 +21,13 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import es.raul.app.presentation.AndroidApplication;
+import es.raul.app.presentation.R;
 import es.raul.app.presentation.internal.di.ComponentReflectionInjector;
 import es.raul.app.presentation.internal.di.components.DaggerFragmentComponent;
 import es.raul.app.presentation.internal.di.components.FragmentComponent;
 import es.raul.app.presentation.internal.di.modules.FragmentModule;
 import es.raul.app.presentation.ui.LoadDataView;
 import es.raul.app.presentation.ui.Presenter;
-import es.sepla.app.presentation.R;
 import icepick.Icepick;
 import java.util.List;
 

@@ -24,13 +24,13 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import es.raul.app.presentation.AndroidApplication;
+import es.raul.app.presentation.R;
 import es.raul.app.presentation.internal.di.ComponentReflectionInjector;
 import es.raul.app.presentation.internal.di.components.ActivityComponent;
 import es.raul.app.presentation.internal.di.components.DaggerActivityComponent;
 import es.raul.app.presentation.internal.di.modules.ActivityModule;
 import es.raul.app.presentation.navigation.Navigator;
 import es.raul.app.presentation.ui.Presenter;
-import es.sepla.app.presentation.R;
 import icepick.Icepick;
 import icepick.State;
 import java.util.List;
@@ -210,7 +210,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * Adds a {@link Fragment} to this activity's layout.
      *
      * @param containerViewId The container view to where add the fragment.
-     * @param fragment        The fragment to be added.
+     * @param fragment The fragment to be added.
      */
     protected void replaceFragment(int containerViewId, Fragment fragment, boolean addToBackStack) {
         FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();

@@ -55,7 +55,7 @@ public class ApplicationComponentGenerator extends Generator {
         String readFile = FileManager.readFile(f);
         String modelClassName = entityName.substring(0, 1).toUpperCase() + entityName.substring(1);
         String importEntityRepository = "import " + PackagesProvider.getAppPackage() + "." + PackagesProvider.getRepositoryPackage() + "." + modelClassName + "Repository;";
-        String provideEntityRepository = modelClassName + "Repository " + entityName + "Repository();";
+        String provideEntityRepository = modelClassName + "Repository " + entityName.substring(0, 1).toLowerCase() + entityName.substring(1) + "Repository();";
 
         String completeClass = "";
         boolean imported = false;

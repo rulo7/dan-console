@@ -1,0 +1,10 @@
+entity_path:data/src/main/java/es/raul/app/data/entity/;
+mapper_path:data/src/main/java/es/raul/app/data/entity/mappercache/;
+cache_path:data/src/main/java/es/raul/app/data/cache/;
+datarepository_path:data/src/main/java/es/raul/app/data/repository/;
+datastore_path:data/src/main/java/es/raul/app/data/repository/datasource/;
+model_path:domain/src/main/java/es/raul/app/domain/model/;
+repository_path:domain/src/main/java/es/raul/app/domain/repository/;
+usingcase_path:domain/src/main/java/es/raul/app/domain/interactor/;
+application-component_path:presentation/src/main/java/es/raul/app/presentation/internal/di/components/;
+application-module_path:presentation/src/main/java/es/raul/app/presentation/internal/di/modules/;
