@@ -3,8 +3,6 @@ package _app_package_name_._packagename_;
 import android.content.Context;
 import java.io.File;
 import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import rx.Observable;
 import javax.inject.Inject;
 import javax.inject.Singleton;

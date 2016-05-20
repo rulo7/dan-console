@@ -70,7 +70,7 @@ public class ApplicationComponentGenerator extends Generator {
             completeClass += fileLine + ";";
 
             if (i == readFile.split(";").length - 2) {
-                completeClass += "\n\n\t" + provideEntityRepository;
+                completeClass += "\n\n    " + provideEntityRepository;
             }
         }
 

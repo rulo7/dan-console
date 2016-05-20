@@ -1,8 +1,7 @@
 package _app_package_name_._packagename_;
 
-import _app_package_name_._datastore_package_._Entityname_DataStore;
 import _app_package_name_._entity_package_._Entityname_Entity;
-import _app_package_name_._mapper_package_._Entityname_Cache;
+import _app_package_name_._cache_package_._Entityname_Cache;
 
 import java.util.List;
 import rx.Observable;
@@ -16,7 +15,12 @@ public class _Entityname_DiskDataStore implements _Entityname_DataStore {
     }
 
     @Override
-    public Observable<List<_Entityname_Entity>> _entityname_() {
+    public Observable<List<_Entityname_Entity>> _entityname_List() {
         return cache.getList();
+    }
+
+    @Override
+    public Observable<_Entityname_Entity> _entityname_(int id) {
+        return cache.get(id);
     }
 }

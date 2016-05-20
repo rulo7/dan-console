@@ -9,6 +9,8 @@ import exceptions.DanKeyNotFoundException;
 import generators.Generator;
 import java.io.IOException;
 import overriders.SchemaOverrider;
+import overriders.domain.repository.RepositorySchemaOverrider;
+import tools.PathsProvider;
 
 /**
  *
@@ -18,12 +20,12 @@ public class RepositoryGenerator extends Generator{
 
     @Override
     public SchemaOverrider getOverrider() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new RepositorySchemaOverrider();
     }
 
     @Override
     public String getClassPath() throws IOException, DanKeyNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return PathsProvider.getRepositoryPath();
     }
 
     @Override

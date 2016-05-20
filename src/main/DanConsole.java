@@ -2,12 +2,15 @@ package main;
 
 import generators.Generator;
 import generators.data.cache.CacheGenerator;
+import generators.data.datarepository.DataRepositoryGenerator;
 import generators.data.datastore.DataFactoryGenerator;
 import generators.data.datastore.DataStoreGenerator;
 import generators.data.datastore.imp.CloudDataStoreGenerator;
 import generators.data.datastore.imp.DiskDataStoreGenerator;
 import generators.data.entity.EntityGenerator;
+import generators.data.mapper.MapperGenerator;
 import generators.domain.model.ModelGenerator;
+import generators.domain.repository.RepositoryGenerator;
 import generators.presentation.ApplicationComponentGenerator;
 import generators.presentation.ApplicationModuleGenerator;
 import java.util.Scanner;
@@ -32,7 +35,10 @@ public class DanConsole {
             new DataStoreGenerator(),
             new DataFactoryGenerator(),
             new CloudDataStoreGenerator(),
-            new DiskDataStoreGenerator()
+            new DiskDataStoreGenerator(),
+            new MapperGenerator(),
+            new RepositoryGenerator(),
+            new DataRepositoryGenerator()
         };
         
         for (Generator generator : generators) {

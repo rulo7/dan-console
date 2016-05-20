@@ -1,5 +1,5 @@
 entity_path:data/src/main/java/es/raul/app/data/entity/;
-mapper_path:data/src/main/java/es/raul/app/data/entity/mappercache/;
+mapper_path:data/src/main/java/es/raul/app/data/entity/mapper/;
 cache_path:data/src/main/java/es/raul/app/data/cache/;
 datarepository_path:data/src/main/java/es/raul/app/data/repository/;
 datastore_path:data/src/main/java/es/raul/app/data/repository/datasource/;

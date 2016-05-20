@@ -28,6 +28,5 @@ public class CacheGenerator extends Generator{
     public String getPostFixClass() {
         return "Cache.java";
     }
-
     
 }

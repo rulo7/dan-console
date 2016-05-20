@@ -1,7 +1,6 @@
 package _app_package_name_._packagename_;
 
-import _app_package_name_._datastore_package_._Entityname_DataStore;
-import _app_package_name_._mapper_package_._Entityname_Cache;
+import _app_package_name_._cache_package_._Entityname_Cache;
 import _app_package_name_.data.net.RestApi;
 import javax.inject.Inject;
 import javax.inject.Singleton;
