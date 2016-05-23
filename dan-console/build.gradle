@@ -14,7 +14,7 @@ sourceSets {
     main {
         compileClasspath += configurations.provided
         java {
-            srcDir 'src'
+            srcDir 'src/main'
         }
     }
 }

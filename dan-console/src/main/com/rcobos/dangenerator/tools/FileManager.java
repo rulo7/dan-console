@@ -10,6 +10,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 /**
  *
@@ -57,6 +59,26 @@ public class FileManager {
             if (reader != null) {
                 reader.close();
             }
+        }
+    }
+
+    public static void copy(String srcPath, String destPath) throws IOException {
+        File src = new File(srcPath);
+        File dest = new File(destPath);
+        copy(src, dest);
+    }
+
+    private static void copy(File src, File dest) throws IOException {
+        if (src.isDirectory()) {
+            if (!dest.exists()) {
+                dest.mkdir();
+            }
+            String files[] = src.list();
+            for (String fileName : files) {
+                copy(new File(src, fileName), new File(dest, fileName));
+            }
+        } else {
+            Files.copy(src.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
         }
     }
 }
