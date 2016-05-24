@@ -1,1 +1,3 @@
-include "danPlugin"
+include ':presentation'
+include ':domain'
+include ':data'

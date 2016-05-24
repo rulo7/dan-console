@@ -1,5 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'idea'
+
 
 repositories {
     mavenCentral()
@@ -20,17 +22,22 @@ sourceSets {
         compileClasspath += configurations.provided
         java {
             srcDir 'src/main'
+            exclude '**/resources/base_bundle/**'
         }
+
     }
 }
 
 dependencies {
     compile gradleApi()
+    compile 'net.lingala.zip4j:zip4j:1.3.2'
+
+
 }
 
 
 
-group = 'com.rcobos'
+group = 'com.racobos'
 version = '1.0-SNAPSHOT'
 
 uploadArchives {
@@ -38,6 +45,12 @@ uploadArchives {
         mavenDeployer {
             repository(url: uri('../repo'))
         }
+    }
+}
+
+idea {
+    module {
+        scopes.PROVIDED.plus += [configurations.provided]
     }
 }
 

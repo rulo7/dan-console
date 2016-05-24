@@ -7,14 +7,19 @@ package com.racobos.dangenerator.tools;/*
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import net.lingala.zip4j.core.ZipFile;
+import net.lingala.zip4j.exception.ZipException;
 
 /**
- *
  * @author raulcobos
  */
 public class FileManager {
@@ -37,12 +42,10 @@ public class FileManager {
         if (!f.exists() || !f.canWrite()) {
             return false;
         }
-
         FileWriter fw = new FileWriter(f.getAbsoluteFile());
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(txt);
         bw.close();
-
         return true;
     }
 
@@ -68,6 +71,12 @@ public class FileManager {
         copy(src, dest);
     }
 
+    public static void copy(URI srcPath, String destPath) throws IOException {
+        File src = new File(srcPath);
+        File dest = new File(destPath);
+        copy(src, dest);
+    }
+
     private static void copy(File src, File dest) throws IOException {
         if (src.isDirectory()) {
             if (!dest.exists()) {
@@ -80,5 +89,39 @@ public class FileManager {
         } else {
             Files.copy(src.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
         }
+    }
+
+    public static void unZipIt(InputStream inputStream, String outputZip) {
+        OutputStream outputStream = null;
+        try {
+            outputStream = new FileOutputStream(new File(outputZip));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        int read = 0;
+        byte[] bytes = new byte[1024];
+        try {
+            while ((read = inputStream.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, read);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (outputStream != null) {
+                outputStream.close();
+            }
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        File file = new File(outputZip);
+        try {
+            ZipFile zipFile = new ZipFile(file);
+            zipFile.extractAll(new File(".").getPath());
+        } catch (ZipException e) {
+            e.printStackTrace();
+        }
+        file.delete();
     }
 }

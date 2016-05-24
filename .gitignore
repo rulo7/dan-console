@@ -60,3 +60,11 @@ build
 *.ipr
 *~
 *.swp
+
+repo
+/data
+/base*
+/domain
+/presentation
+
+

@@ -1,7 +1,6 @@
 package com.racobos.dangenerator;
 
 import com.racobos.dangenerator.tools.FileManager;
-import java.io.IOException;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.TaskAction;
 
@@ -12,17 +11,7 @@ public class DanTask extends DefaultTask {
 
     @TaskAction
     public void danGenerateProject() {
-        try {
-            FileManager.copy("resources",getPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ClassLoader classLoader = getClass().getClassLoader();
+        FileManager.unZipIt(classLoader.getResourceAsStream("base_bundle.zip"), "base_bundle.zip");
     }
-
-    @TaskAction
-    public void danGenerateEntity() {
-        new DanConsole().run();
-
-    }
-
 }
