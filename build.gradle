@@ -1,23 +1,12 @@
 buildscript {
     repositories {
-        maven {
-            url uri('repo')
-            mavenCentral()
-        }
-
+        jcenter()
     }
     dependencies {
-        classpath group: 'com.racobos',
-                name: 'danPlugin',
-                version: '1.0-SNAPSHOT'
+        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
     }
 }
-
-apply plugin: 'dan-plugin'
-
-
-
-
 
 if (JavaVersion.current().isJava8Compatible()) {
     allprojects {
@@ -27,9 +16,11 @@ if (JavaVersion.current().isJava8Compatible()) {
     }
 }
 
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
 task wrapper(type: Wrapper) {
     description 'Creates the gradle wrapper.'
     gradleVersion '2.8'
 }
-
-

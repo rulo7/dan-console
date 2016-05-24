@@ -12,7 +12,5 @@ public class DanPlugin implements Plugin<Project> {
     public void apply(final Project target) {
         target.getTasks().create("danGenerateProject", DanTask.class);
         target.getTasks().create("danGenerateEntity", DanEntityTask.class);
-
-
     }
 }
