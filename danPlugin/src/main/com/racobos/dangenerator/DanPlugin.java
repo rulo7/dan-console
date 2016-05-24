@@ -9,8 +9,10 @@ import org.gradle.api.Project;
 public class DanPlugin implements Plugin<Project> {
 
     @Override
-    public void apply(Project target) {
+    public void apply(final Project target) {
         target.getTasks().create("danGenerateProject", DanTask.class);
-        //  target.getTasks().create("danGenerateEntity", DanTask.class);
+        target.getTasks().create("danGenerateEntity", DanEntityTask.class);
+
+
     }
 }

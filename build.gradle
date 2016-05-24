@@ -1,32 +1,35 @@
-apply from: 'config/buildsystem/ci.gradle'
-apply from: 'config/buildsystem/dependencies.gradle'
-apply from: 'config/quality/generateReports.gradle'
-
-
 buildscript {
     repositories {
-        jcenter()
-        mavenCentral()
+        maven {
+            url uri('repo')
+            mavenCentral()
+        }
+
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath group: 'com.racobos',
+                name: 'danPlugin',
+                version: '1.0-SNAPSHOT'
     }
 }
 
-allprojects {
-    ext {
-        androidApplicationId = 'es.raul.app.presentation'
-        androidVersionCode = 1
-        androidVersionName = "1.0"
-    }
-    repositories {
-        maven { url "https://clojars.org/repo/" }
-        maven { url 'http://dev.open-rnd.net:30844/content/groups/public/' }
-    }
+apply plugin: 'dan-plugin'
 
-    task wrapper(type: Wrapper) {
-        description 'Creates the gradle wrapper.'
-        gradleVersion '2.8'
+
+
+
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
     }
 }
+
+task wrapper(type: Wrapper) {
+    description 'Creates the gradle wrapper.'
+    gradleVersion '2.8'
+}
+
+

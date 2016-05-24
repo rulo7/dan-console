@@ -40,7 +40,7 @@ public class DanConsole {
             new RepositoryGenerator(),
             new DataRepositoryGenerator()
         };
-        
+
         for (Generator generator : generators) {
             generator.generate(entity);
         }
