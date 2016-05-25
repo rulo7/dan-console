@@ -62,24 +62,37 @@ public class DanConsole {
             System.err.println(ex.getMessage());
         }*/
         //3. delete the src folder if this exits
-        File app = new File("app");
+        File app = new File("./app");
         if (app.exists()) {
             removeRecursiveFolder(app);
+        }else{
+            System.err.println(app.getPath() + app.getName() + " couldn´t be found");
         }
         //4. delete __MACOSX folder
-        File __macosx = new File("__MACOSX");
+        File __macosx = new File("./__MACOSX");
         if (__macosx.exists()) {
             removeRecursiveFolder(__macosx);
+        }else{
+            System.err.println(__macosx.getPath() + __macosx.getName() + " couldn´t be found");
         }
     }
 
     private void removeRecursiveFolder(File file) {
         if (file.isFile() || file.list().length == 0) {
-            file.delete();
+            if (file.delete()) {
+                System.out.println(file.getPath() + file.getName() + " removed");
+            } else {
+                System.err.println(file.getPath() + file.getName() + " couldn´t be removed");
+            }
             return;
         }
         for (String f : file.list()) {
             removeRecursiveFolder(new File(file.getPath(), f));
+        }
+        if (file.delete()) {
+            System.out.println(file.getPath() + file.getName() + " removed");
+        } else {
+            System.err.println(file.getPath() + file.getName() + " couldn´t be removed");
         }
     }
 }
