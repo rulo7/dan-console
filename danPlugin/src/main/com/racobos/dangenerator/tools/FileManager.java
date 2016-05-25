@@ -124,4 +124,9 @@ public class FileManager {
         }
         file.delete();
     }
+
+    public static void changeNameDirectory(String filePath, String newName) {
+        File f = new File(filePath);
+        f.renameTo(new File(f.getParent(),newName));
+    }
 }

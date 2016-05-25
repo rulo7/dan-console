@@ -10,6 +10,6 @@ public class DanEntityTask extends DefaultTask {
 
     @TaskAction
     public void danGenerateEntity() {
-        new DanConsole().run();
+        new DanConsole().generateEntity();
     }
 }
