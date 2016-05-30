@@ -1,5 +1,6 @@
 package com.racobos.dangenerator;
 
+import java.util.Arrays;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.TaskAction;
 
@@ -8,8 +9,16 @@ import org.gradle.api.tasks.TaskAction;
  */
 public class DanEntityTask extends DefaultTask {
 
+    String[] entities;
+
+    public void setEntities(String[] entities) {
+        this.entities = entities;
+    }
+
     @TaskAction
     public void danGenerateEntity() {
-        new DanConsole().generateEntity();
+        for(String entity: Arrays.asList(entities)) {
+            new DanConsole().generateEntity(entity);
+        }
     }
 }

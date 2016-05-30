@@ -10,7 +10,13 @@ public class DanPlugin implements Plugin<Project> {
 
     @Override
     public void apply(final Project target) {
-        target.getTasks().create("danGenerateProject", DanProjectTask.class);
-        target.getTasks().create("danGenerateEntity", DanEntityTask.class);
+        target.getTasks().create("danGenerateProject", DanProjectTask.class, danProjectTask -> {
+            danProjectTask.setPackageSyntax((String) target.property("packageSyntax"));
+            //danProjectTask.execute();
+        });
+        target.getTasks().create("danGenerateEntity", DanEntityTask.class, danEntityTask -> {
+            danEntityTask.setEntities(((String) target.property("entityList")).split(","));
+            //danEntityTask.execute();
+        });
     }
 }

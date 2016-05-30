@@ -16,17 +16,14 @@ import com.racobos.dangenerator.generators.presentation.ApplicationModuleGenerat
 import com.racobos.dangenerator.tools.FileManager;
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * @author raulcobos
  */
 public class DanConsole {
 
-    public void generateEntity() {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Pls, write the model name: ");
-        String entity = in.nextLine();
+    public void generateEntity(String entity) {
+        System.out.println("Generating entity: " + entity);
         Generator[] generators = {
                 new EntityGenerator(), new ModelGenerator(), new CacheGenerator(), new ApplicationComponentGenerator(),
                 new ApplicationModuleGenerator(), new DataStoreGenerator(), new DataFactoryGenerator(),
@@ -38,15 +35,14 @@ public class DanConsole {
         }
     }
 
-    public void generateProject() {
-        String packageName = "com.racobos.app";
+    public void generateProject(String originalPackage, String packageName) {
         ClassLoader classLoader = getClass().getClassLoader();
         FileManager.unZipIt(classLoader.getResourceAsStream("base_bundle.zip"), "base_bundle.zip");
         //1. rename the package name in packages.dan
         try {
             File packagesDan = new File("./config/packages.dan");
             String content = FileManager.readFile(packagesDan);
-            FileManager.writeFile(packagesDan, content.replace("es.raul.app;", packageName));
+            FileManager.writeFile(packagesDan, content.replace(originalPackage, packageName));
         } catch (IOException ex) {
             System.err.println("No se pudo sobreescribir el nombre del paquete en packages.dan");
             System.err.println(ex.getMessage());
@@ -55,7 +51,8 @@ public class DanConsole {
         try {
             File packagesDan = new File("./config/paths.dan");
             String content = FileManager.readFile(packagesDan);
-            FileManager.writeFile(packagesDan, content.replace("es/raul/app", packageName.replace(".", "/")));
+            FileManager.writeFile(packagesDan, content.replace(originalPackage.replace(".", File.separator),
+                    packageName.replace(".", File.separator)));
         } catch (IOException ex) {
             System.err.println("No se pudo sobreescribir el las rutas en paths.dan");
             System.err.println(ex.getMessage());
@@ -75,13 +72,13 @@ public class DanConsole {
             System.err.println(__macosx.getPath() + " couldn´t be found");
         }
         //5. rename the base folders
-        String[] currentFolders = "es.raul.app".split("\\.");
+        String[] currentFolders = originalPackage.split("\\.");
         String[] newFolders = packageName.split("\\.");
         for (int i = 0; i < newFolders.length; i++) {
             renameRecursiveFolder(new File("."), currentFolders[i], newFolders[i]);
         }
         //6. replace imports
-        replaceImports(new File("."), "es.raul.app", packageName);
+        replaceImports(new File("."), originalPackage, packageName);
     }
 
     private void removeRecursiveFolder(File file) {
@@ -115,7 +112,7 @@ public class DanConsole {
     }
 
     private void replaceImports(File root, String original, String packageName) {
-        if (root.isFile() && root.getName().contains(".java")) {
+        if (root.isFile() && (root.getName().contains(".java") || root.getName().contains("AndroidManifest.xml"))) {
             try {
                 String content = FileManager.readFile(root);
                 FileManager.writeFile(root, content.replace(original, packageName));
