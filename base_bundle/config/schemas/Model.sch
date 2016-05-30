@@ -1,6 +1,8 @@
 package _app_package_name_._packagename_;
 
-public class _Entityname_ {
+import java.io.Serializable;
+
+public class _Entityname_ implements Serializable {
     private int id;
 
     public int getId(){
