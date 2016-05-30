@@ -67,6 +67,8 @@ public class DanConsole {
         replaceImports(new File("."), originalPackage, packageName);
         //7. replace AppName
         replaceInside(new File("./presentation/src/main/res/values/strings.xml"), originalAppName, appName);
+        //8. replace presentation proguard-rules
+        replaceInside(new File("./presentation/proguard-rules.pro"), originalPackage, packageName);
     }
 
     private void removeRecursiveFolder(File file) {
