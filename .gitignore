@@ -10,7 +10,6 @@
 build/
 dist/
 nbproject/
-base_bundle_test/
 .DS_Store
 build.xml
 manifest.mf

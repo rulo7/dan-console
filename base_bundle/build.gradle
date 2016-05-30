@@ -1,0 +1,41 @@
+apply from: 'config/buildsystem/ci.gradle'
+apply from: 'config/buildsystem/dependencies.gradle'
+apply from: 'config/quality/generateReports.gradle'
+apply plugin: 'dan-plugin'
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        /*maven {
+            url  "../repo"
+        }*/
+        maven {
+            url "http://dl.bintray.com/racobos/maven"
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.racobos:danPlugin:0.0.+'
+    }
+}
+
+allprojects {
+    ext {
+        androidApplicationId = packageSyntax
+        androidVersionCode = 1
+        androidVersionName = "1.0"
+        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+        testApplicationId = packageSyntax + '.test'
+    }
+    repositories {
+        maven { url "https://clojars.org/repo/" }
+        maven { url 'http://dev.open-rnd.net:30844/content/groups/public/' }
+    }
+
+    task wrapper(type: Wrapper) {
+        description 'Creates the gradle wrapper.'
+        gradleVersion '2.8'
+    }
+}

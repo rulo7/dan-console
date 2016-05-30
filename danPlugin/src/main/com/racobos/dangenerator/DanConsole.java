@@ -35,28 +35,14 @@ public class DanConsole {
         }
     }
 
-    public void generateProject(String originalPackage, String packageName) {
+    public void generateProject(String originalPackage, String packageName, String originalAppName, String appName) {
         ClassLoader classLoader = getClass().getClassLoader();
         FileManager.unZipIt(classLoader.getResourceAsStream("base_bundle.zip"), "base_bundle.zip");
         //1. rename the package name in packages.dan
-        try {
-            File packagesDan = new File("./config/packages.dan");
-            String content = FileManager.readFile(packagesDan);
-            FileManager.writeFile(packagesDan, content.replace(originalPackage, packageName));
-        } catch (IOException ex) {
-            System.err.println("No se pudo sobreescribir el nombre del paquete en packages.dan");
-            System.err.println(ex.getMessage());
-        }
+        replaceInside(new File("./config/packages.dan"), originalPackage, packageName);
         //2. rename the paths in paths.dan
-        try {
-            File packagesDan = new File("./config/paths.dan");
-            String content = FileManager.readFile(packagesDan);
-            FileManager.writeFile(packagesDan, content.replace(originalPackage.replace(".", File.separator),
-                    packageName.replace(".", File.separator)));
-        } catch (IOException ex) {
-            System.err.println("No se pudo sobreescribir el las rutas en paths.dan");
-            System.err.println(ex.getMessage());
-        }
+        replaceInside(new File("./config/paths.dan"), originalPackage.replace(".", File.separator),
+                packageName.replace(".", File.separator));
         //3. delete the src folder if this exits
         File app = new File("./app");
         if (app.exists()) {
@@ -79,6 +65,8 @@ public class DanConsole {
         }
         //6. replace imports
         replaceImports(new File("."), originalPackage, packageName);
+        //7. replace AppName
+        replaceInside(new File("./presentation/src/main/res/values/strings.xml"), originalAppName, appName);
     }
 
     private void removeRecursiveFolder(File file) {
@@ -125,6 +113,16 @@ public class DanConsole {
             for (File f : root.listFiles()) {
                 replaceImports(f, original, packageName);
             }
+        }
+    }
+
+    private void replaceInside(File file, String originalAppName, String appName) {
+        try {
+            String content = FileManager.readFile(file);
+            FileManager.writeFile(file, content.replace(originalAppName, appName));
+        } catch (IOException ex) {
+            System.err.println("No se pudo sobreescribir el import en " + file.getPath());
+            System.err.println(ex.getMessage());
         }
     }
 }

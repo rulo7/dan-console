@@ -111,9 +111,14 @@ public class FileManager {
             if (outputStream != null) {
                 outputStream.close();
             }
-            inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         File file = new File(outputZip);
         try {

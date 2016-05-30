@@ -12,6 +12,7 @@ public class DanPlugin implements Plugin<Project> {
     public void apply(final Project target) {
         target.getTasks().create("danGenerateProject", DanProjectTask.class, danProjectTask -> {
             danProjectTask.setPackageSyntax((String) target.property("packageSyntax"));
+            danProjectTask.setAppName((String) target.property("appName"));
             //danProjectTask.execute();
         });
         target.getTasks().create("danGenerateEntity", DanEntityTask.class, danEntityTask -> {
