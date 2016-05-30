@@ -4,7 +4,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'com.racobos'
-version = '0.0.1'
+version = '0.0.2'
 
 repositories {
     mavenCentral()
@@ -37,6 +37,15 @@ task sourcesJar(type: Jar) {
     from sourceSets.main.allSource
     classifier = 'sources'
 }
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../../repo'))
+        }
+    }
+}
+
 
 bintray {
     user = properties.getProperty("bintray.user")

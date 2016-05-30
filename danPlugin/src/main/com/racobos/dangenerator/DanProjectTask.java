@@ -8,8 +8,14 @@ import org.gradle.api.tasks.TaskAction;
  */
 public class DanProjectTask extends DefaultTask {
 
+    String packageSyntax = "com.sample.app";
+
+    public void setPackageSyntax(String packageSyntax) {
+        this.packageSyntax = packageSyntax;
+    }
+
     @TaskAction
     public void danGenerateProject() {
-        new DanConsole().generateProject();
+        new DanConsole().generateProject(packageSyntax);
     }
 }
