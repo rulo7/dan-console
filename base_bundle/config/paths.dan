@@ -8,3 +8,4 @@ repository_path:domain/src/main/java/es/raul/app/domain/repository/;
 usingcase_path:domain/src/main/java/es/raul/app/domain/interactor/;
 application-component_path:presentation/src/main/java/es/raul/app/presentation/internal/di/components/;
 application-module_path:presentation/src/main/java/es/raul/app/presentation/internal/di/modules/;
+activity_path:presentation/src/main/java/es/raul/app/presentation/ui/;

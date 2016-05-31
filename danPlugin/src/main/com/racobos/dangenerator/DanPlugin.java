@@ -18,10 +18,14 @@ public class DanPlugin implements Plugin<Project> {
             danEntityTask.setEntities(((String) target.property("entityList")).split(","));
         });
         target.getTasks().create("danGenerateUi", DanUiTask.class, danUiTask -> {
-
+            String uiName = (String) target.property("uiName");
+            danUiTask.setUiName(uiName);
         });
-        target.getTasks().create("danGenerateView", DanViewTask.class, danUiTask -> {
-
+        target.getTasks().create("danGenerateView", DanViewTask.class, danViewTask -> {
+            String uiName = (String) target.property("uiName");
+            String viewName = (String) target.property("viewName");
+            danViewTask.setUiName(uiName);
+            danViewTask.setViewName(viewName);
         });
     }
 }

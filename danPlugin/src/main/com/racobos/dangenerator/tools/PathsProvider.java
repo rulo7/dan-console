@@ -70,4 +70,10 @@ public class PathsProvider extends DanFileProvider {
     public static String getApplicationModulePath() throws IOException, DanKeyNotFoundException {
         return getValueFromDanFile(APPLICATIONMODULE_PATH_KEY, PATHS_FILE);
     }
+
+    private static final String ACTIVITY_PATH_KEY = "activity_path";
+
+    public static String getActivityPath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(ACTIVITY_PATH_KEY, PATHS_FILE);
+    }
 }

@@ -6,7 +6,7 @@ import android.util.TypedValue;
 /**
  * Created by raulcobos on 22/3/16.
  */
-public class DeviceSizesManager {
+public class DeviceSizeUtils {
 
     public static int getScreenWidth(Context context) {
         return context.getResources().getDisplayMetrics().widthPixels;

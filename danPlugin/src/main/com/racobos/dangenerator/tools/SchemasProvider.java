@@ -92,4 +92,10 @@ public class SchemasProvider {
     public static String getApplicationModuleSchema() throws IOException, DanKeyNotFoundException {
         return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, APPLICATIONMODULE_SCH));
     }
+
+    private static final String ACTIVITY_SCH = "Activity.sch";
+
+    public static String getActivitySchema() throws IOException, DanKeyNotFoundException {
+        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, ACTIVITY_SCH));
+    }
 }

@@ -16,6 +16,8 @@ public abstract class SchemaOverrider {
 
     private final String ENTITY_CLASSNAME_TAG = "_Entityname_";
     private final String ENTITY_VARNAME_TAG = "_entityname_";
+    private final String UINAME_CLASSNAME_TAG = "_UiName_";
+    private final String UINAME_VARNAME_TAG = "_uiName_";
     private final String PACKAGENAME_TAG = "_packagename_";
     //Packages
     private final String APP_PACKAGENAME_TAG = "_app_package_name_";
@@ -30,12 +32,14 @@ public abstract class SchemaOverrider {
     private final String APPLICATIONCOMPONENT_PACKAGE_TAG = "_application-component_package_";
     private final String APPLICATIONMODULE_PACKAGE_TAG = "_application-module_package_";
 
-    public String generateSchema(String entity) throws IOException, DanKeyNotFoundException {
+    public String generateSchema(String className) throws IOException, DanKeyNotFoundException {
         String scheme = getScheme();
         try {
             scheme = scheme.replace(APP_PACKAGENAME_TAG, PackagesProvider.getAppPackage());
-            scheme = scheme.replace(ENTITY_CLASSNAME_TAG, entity.substring(0, 1).toUpperCase() + entity.substring(1));
-            scheme = scheme.replace(ENTITY_VARNAME_TAG, entity.substring(0, 1).toLowerCase() + entity.substring(1));
+            scheme = scheme.replace(ENTITY_CLASSNAME_TAG, className.substring(0, 1).toUpperCase() + className.substring(1));
+            scheme = scheme.replace(ENTITY_VARNAME_TAG, className.substring(0, 1).toLowerCase() + className.substring(1));
+            scheme = scheme.replace(UINAME_CLASSNAME_TAG, className.substring(0, 1).toUpperCase() + className.substring(1));
+            scheme = scheme.replace(UINAME_VARNAME_TAG, className.substring(0, 1).toLowerCase() + className.substring(1));
             scheme = scheme.replace(PACKAGENAME_TAG, getPackageName());
             scheme = scheme.replace(ENTITY_PACKAGE_TAG, PackagesProvider.getEntityPackage());
             scheme = scheme.replace(MODEL_PACKAGE_TAG, PackagesProvider.getModelPackage());

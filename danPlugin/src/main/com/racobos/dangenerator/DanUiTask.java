@@ -8,10 +8,14 @@ import org.gradle.api.tasks.TaskAction;
  */
 public class DanUiTask extends DefaultTask {
 
-    String uiName;
+    String uiName = "sample";
+
+    public void setUiName(String uiName) {
+        this.uiName = uiName;
+    }
 
     @TaskAction
-    public void danGenerateEntity() {
+    public void danGenerateUi() {
         new DanConsole().generateUi(uiName);
     }
 }

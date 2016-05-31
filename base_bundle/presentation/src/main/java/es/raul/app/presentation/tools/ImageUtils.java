@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide;
 /**
  * Created by raulcobos on 5/4/16.
  */
-public class PrinterManager {
+public class ImageUtils {
 
     public static void print(ImageView imageView, String src) {
         imageView.post(() -> {

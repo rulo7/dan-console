@@ -75,9 +75,15 @@ public class PackagesProvider extends DanFileProvider {
         return getValueFromDanFile(APPLICATIONCOMPONENT_PACKAGE_KEY, PACKAGES_FILE);
     }
 
-    private static final String APPLICATIONMODULE_PATH_KEY = "application-module_package";
+    private static final String APPLICATIONMODULE_PACKAGE_KEY = "application-module_package";
 
     public static String getApplicationModulePackage() throws IOException, DanKeyNotFoundException {
-        return getValueFromDanFile(APPLICATIONMODULE_PATH_KEY, PACKAGES_FILE);
+        return getValueFromDanFile(APPLICATIONMODULE_PACKAGE_KEY, PACKAGES_FILE);
+    }
+
+    private static final String ACTIVITY_PACKAGE_KEY = "activity_package";
+
+    public static String getActivityPackage() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(ACTIVITY_PACKAGE_KEY, PACKAGES_FILE);
     }
 }

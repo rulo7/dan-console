@@ -8,11 +8,19 @@ import org.gradle.api.tasks.TaskAction;
  */
 public class DanViewTask extends DefaultTask {
 
-    String uiName;
-    String viewName;
+    String uiName = "sample";
+    String viewName = "test";
+
+    public void setUiName(String uiName) {
+        this.uiName = uiName;
+    }
+
+    public void setViewName(String viewName) {
+        this.viewName = viewName;
+    }
 
     @TaskAction
-    public void danGenerateEntity() {
+    public void danGenerateView() {
         new DanConsole().generateView(uiName, viewName);
     }
 }

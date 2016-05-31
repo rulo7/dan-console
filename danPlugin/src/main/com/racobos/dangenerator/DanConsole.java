@@ -13,6 +13,7 @@ import com.racobos.dangenerator.generators.domain.model.ModelGenerator;
 import com.racobos.dangenerator.generators.domain.repository.RepositoryGenerator;
 import com.racobos.dangenerator.generators.presentation.ApplicationComponentGenerator;
 import com.racobos.dangenerator.generators.presentation.ApplicationModuleGenerator;
+import com.racobos.dangenerator.generators.presentation.ui.ActivityGenerator;
 import com.racobos.dangenerator.tools.FileManager;
 import java.io.File;
 import java.io.IOException;
@@ -35,22 +36,18 @@ public class DanConsole {
         }
     }
 
-
     public void generateUi(String uiName) {
         System.out.println("Generating ui flow: " + uiName);
-        Generator[] generators = {};
-        //        new EntityGenerator(), new ModelGenerator(), new CacheGenerator(), new ApplicationComponentGenerator(),
-        //        new ApplicationModuleGenerator(), new DataStoreGenerator(), new DataFactoryGenerator(),
-        //        new CloudDataStoreGenerator(), new DiskDataStoreGenerator(), new MapperGenerator(),
-        //        new RepositoryGenerator(), new DataRepositoryGenerator()
-        //};
+        Generator[] generators = {
+                new ActivityGenerator()
+        };
         for (Generator generator : generators) {
             generator.generate(uiName);
         }
     }
 
     public void generateView(String uiName, String viewName) {
-        System.out.println("Generating view : " + viewName + " in flow " +uiName);
+        System.out.println("Generating view : " + viewName + " in flow " + uiName);
         Generator[] generators = {};
         //        new EntityGenerator(), new ModelGenerator(), new CacheGenerator(), new ApplicationComponentGenerator(),
         //        new ApplicationModuleGenerator(), new DataStoreGenerator(), new DataFactoryGenerator(),

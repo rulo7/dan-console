@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by raulcobos on 30/3/16.
  */
-public class PermissionsManager {
+public class PermissionUtils {
     public static void requestMultiplePermissions(ViewGroup rootView,
             final OnAllPermissionsGrantedListener onAllPermissionsGrantedListener, String... permissions) {
         MultiplePermissionsListener multiplePermissionsListener = new MultiplePermissionsListener() {
