@@ -35,6 +35,33 @@ public class DanConsole {
         }
     }
 
+
+    public void generateUi(String uiName) {
+        System.out.println("Generating ui flow: " + uiName);
+        Generator[] generators = {};
+        //        new EntityGenerator(), new ModelGenerator(), new CacheGenerator(), new ApplicationComponentGenerator(),
+        //        new ApplicationModuleGenerator(), new DataStoreGenerator(), new DataFactoryGenerator(),
+        //        new CloudDataStoreGenerator(), new DiskDataStoreGenerator(), new MapperGenerator(),
+        //        new RepositoryGenerator(), new DataRepositoryGenerator()
+        //};
+        for (Generator generator : generators) {
+            generator.generate(uiName);
+        }
+    }
+
+    public void generateView(String uiName, String viewName) {
+        System.out.println("Generating view : " + viewName + " in flow " +uiName);
+        Generator[] generators = {};
+        //        new EntityGenerator(), new ModelGenerator(), new CacheGenerator(), new ApplicationComponentGenerator(),
+        //        new ApplicationModuleGenerator(), new DataStoreGenerator(), new DataFactoryGenerator(),
+        //        new CloudDataStoreGenerator(), new DiskDataStoreGenerator(), new MapperGenerator(),
+        //        new RepositoryGenerator(), new DataRepositoryGenerator()
+        //};
+        for (Generator generator : generators) {
+            generator.generate(uiName);
+        }
+    }
+
     public void generateProject(String originalPackage, String packageName, String originalAppName, String appName) {
         ClassLoader classLoader = getClass().getClassLoader();
         FileManager.unZipIt(classLoader.getResourceAsStream("base_bundle.zip"), "base_bundle.zip");

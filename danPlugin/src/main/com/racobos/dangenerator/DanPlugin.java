@@ -13,11 +13,15 @@ public class DanPlugin implements Plugin<Project> {
         target.getTasks().create("danGenerateProject", DanProjectTask.class, danProjectTask -> {
             danProjectTask.setPackageSyntax((String) target.property("packageSyntax"));
             danProjectTask.setAppName((String) target.property("appName"));
-            //danProjectTask.execute();
         });
         target.getTasks().create("danGenerateEntity", DanEntityTask.class, danEntityTask -> {
             danEntityTask.setEntities(((String) target.property("entityList")).split(","));
-            //danEntityTask.execute();
+        });
+        target.getTasks().create("danGenerateUi", DanUiTask.class, danUiTask -> {
+
+        });
+        target.getTasks().create("danGenerateView", DanViewTask.class, danUiTask -> {
+
         });
     }
 }
