@@ -32,6 +32,7 @@ public class FileManager {
         try {
             FileWriter writer = new FileWriter(file);
             writer.write(fileContent);
+            writer.flush();
             writer.close();
         } catch (IOException e) {
             Log.e(FileManager.class.getSimpleName(), e.getMessage());
@@ -46,6 +47,7 @@ public class FileManager {
             while ((bytesRead = inputStream.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, bytesRead);
             }
+            outputStream.flush();
             outputStream.close();
             inputStream.close();
         } catch (IOException e) {

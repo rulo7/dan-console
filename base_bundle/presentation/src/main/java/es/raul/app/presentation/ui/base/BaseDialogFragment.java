@@ -6,19 +6,19 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.View;
-import java.util.List;
-import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import es.raul.app.domain.exception.ErrorBundle;
 import es.raul.app.presentation.AndroidApplication;
 import es.raul.app.presentation.internal.di.ComponentReflectionInjector;
-import es.raul.app.presentation.internal.di.modules.FragmentModule;
-import es.raul.app.presentation.ui.Presenter;
 import es.raul.app.presentation.internal.di.components.DaggerFragmentComponent;
 import es.raul.app.presentation.internal.di.components.FragmentComponent;
+import es.raul.app.presentation.internal.di.modules.FragmentModule;
 import icepick.Icepick;
+import java.util.List;
+import javax.inject.Inject;
 
-public abstract class BaseDialogFragment extends DialogFragment {
+public abstract class BaseDialogFragment extends DialogFragment implements BaseView {
 
     @Inject
     protected AndroidApplication androidApplication;
@@ -34,7 +34,6 @@ public abstract class BaseDialogFragment extends DialogFragment {
         ComponentReflectionInjector<FragmentComponent> injector =
                 new ComponentReflectionInjector<>(FragmentComponent.class, component);
         injector.inject(this);
-        setupComponent();
         Icepick.restoreInstanceState(this, savedInstanceState);
         if (getPresenter() != null) {
             Icepick.restoreInstanceState(getPresenter(), savedInstanceState);
@@ -112,8 +111,9 @@ public abstract class BaseDialogFragment extends DialogFragment {
     }
 
     @Nullable
-    protected abstract Presenter getPresenter();
+    protected abstract BasePresenter getPresenter();
 
-    protected void setupComponent() {
+    @Override
+    public void showError(ErrorBundle errorBundle) {
     }
 }

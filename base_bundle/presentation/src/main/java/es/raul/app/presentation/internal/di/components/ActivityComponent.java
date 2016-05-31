@@ -16,9 +16,9 @@
 package es.raul.app.presentation.internal.di.components;
 
 import dagger.Component;
-import es.raul.app.presentation.ui.main.MainActivity;
 import es.raul.app.presentation.internal.di.modules.ActivityModule;
 import es.raul.app.presentation.internal.di.scope.PerActivity;
+import es.raul.app.presentation.ui.example.ExampleActivity;
 
 /**
  * A base component upon which fragment's components may depend.
@@ -32,5 +32,6 @@ import es.raul.app.presentation.internal.di.scope.PerActivity;
         dependencies = ApplicationComponent.class,
         modules = ActivityModule.class)
 public interface ActivityComponent {
-    void inject(MainActivity mainActivity);
+
+    void inject(ExampleActivity exampleActivity);
 }

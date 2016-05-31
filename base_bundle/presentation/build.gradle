@@ -103,8 +103,9 @@ dependencies {
     compile project(':data')
 
     apt presentationDependencies.daggerCompiler
-    compile presentationDependencies.dagger
+    apt presentationDependencies.butterKnifeCompiler
     compile presentationDependencies.butterKnife
+    compile presentationDependencies.dagger
     compile presentationDependencies.supportRecyclerView
     compile presentationDependencies.supportCardView
     compile presentationDependencies.supportGridLayout

@@ -21,6 +21,7 @@ import com.karumi.dexter.Dexter;
 import es.raul.app.presentation.internal.di.components.ApplicationComponent;
 import es.raul.app.presentation.internal.di.components.DaggerApplicationComponent;
 import es.raul.app.presentation.internal.di.modules.ApplicationModule;
+import timber.log.Timber;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
@@ -40,6 +41,13 @@ public class AndroidApplication extends Application {
         initInjector();
         initCaligraphy();
         initDexter();
+        initTimber();
+    }
+
+    private void initTimber() {
+        if(BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
     }
 
     private void initDexter() {

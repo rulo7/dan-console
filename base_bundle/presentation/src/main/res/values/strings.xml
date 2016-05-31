@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">DAN-Example</string>
+    <string name="app_name">app</string>
     <string name="empty">This view is empty</string>
     <string name="font.type">fonts/Avenir-Medium.ttf</string>
     <string name="retry">Reintentar</string>

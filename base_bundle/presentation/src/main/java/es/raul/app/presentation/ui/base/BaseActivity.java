@@ -1,5 +1,6 @@
 package es.raul.app.presentation.ui.base;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
@@ -20,7 +20,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.raul.app.presentation.AndroidApplication;
@@ -30,7 +29,6 @@ import es.raul.app.presentation.internal.di.components.ActivityComponent;
 import es.raul.app.presentation.internal.di.components.DaggerActivityComponent;
 import es.raul.app.presentation.internal.di.modules.ActivityModule;
 import es.raul.app.presentation.navigation.Navigator;
-import es.raul.app.presentation.ui.Presenter;
 import icepick.Icepick;
 import icepick.State;
 import java.util.List;
@@ -68,40 +66,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         ComponentReflectionInjector<ActivityComponent> injector =
                 new ComponentReflectionInjector<>(ActivityComponent.class, component);
         injector.inject(this);
-        setupView();
         Icepick.restoreInstanceState(this, savedInstanceState);
-        if (getPresenter() != null) {
-            getPresenter().onCreate(savedInstanceState);
-            Icepick.restoreInstanceState(getPresenter(), savedInstanceState);
-        }
-    }
-
-    @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        setupUi();
-        if (savedInstanceState == null) {
-            init();
-        } else {
-            afterConfigChange();
-        }
-        if (getPresenter() != null) {
-            getPresenter().onInit();
-        }
     }
 
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
         ButterKnife.bind(this);
-        bindToolbar();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (getPresenter() != null) {
-            getPresenter().onResume();
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
         }
     }
 
@@ -109,40 +84,17 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Icepick.saveInstanceState(this, outState);
-        if (getPresenter() != null) {
-            Icepick.saveInstanceState(getPresenter(), outState);
-        }
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         if (resultCode != Activity.RESULT_CANCELED) {
-            setResultCode(resultCode);
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (getPresenter() != null) {
-            getPresenter().onPause();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (getPresenter() != null) {
-            getPresenter().onDestroy();
-        }
-    }
-
-    protected void bindToolbar() {
-        if (toolbar != null) {
-            toolbar.setTitle("");
-            setSupportActionBar(toolbar);
-            setToolbar(toolbar);
+            if (resultIntent != null) {
+                setResultCode(resultCode, resultIntent);
+            } else {
+                setResultCode(resultCode);
+            }
         }
     }
 
@@ -188,9 +140,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (getPresenter() != null) {
-            getPresenter().onActivityResult(requestCode, resultCode, data);
-        }
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
         if (fragments != null) {
             for (Fragment fragment : fragments) {
@@ -206,12 +155,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
-    /**
-     * Adds a {@link Fragment} to this activity's layout.
-     *
-     * @param containerViewId The container view to where add the fragment.
-     * @param fragment The fragment to be added.
-     */
     protected void replaceFragment(int containerViewId, Fragment fragment, boolean addToBackStack) {
         FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(containerViewId, fragment, fragment.getClass().getSimpleName());
@@ -219,36 +162,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             fragmentTransaction.addToBackStack(null);
         }
         fragmentTransaction.commit();
-    }
-
-    protected void setToolbar(Toolbar toolbar) {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(getTitle());
-    }
-
-    protected void setupView() {
-    }
-
-    protected void init() {
-    }
-
-    protected void setupUi() {
-    }
-
-    protected void afterConfigChange() {
-    }
-
-    protected void showToastMessage(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-    }
-
-    protected void showSnackMessage(String message) {
-        try {
-            Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG).show();
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-        }
     }
 
     protected void changeColorBackButton(int colorId) {
@@ -261,6 +174,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setStatusBarColor(int colorId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -269,7 +183,4 @@ public abstract class BaseActivity extends AppCompatActivity {
             window.setStatusBarColor(ContextCompat.getColor(this, colorId));
         }
     }
-
-    @Nullable
-    protected abstract Presenter getPresenter();
 }

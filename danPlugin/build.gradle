@@ -3,8 +3,9 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
-def groupPlugin = 'com.racobos'
-def versionPlugin = '0.0.4'
+group = 'com.racobos'
+def versionPlugin = '0.0.5'
+version = versionPlugin
 def namePlugin = versionPlugin + '-experimental'
 
 repositories {
