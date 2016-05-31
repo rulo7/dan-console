@@ -62,7 +62,6 @@ build
 
 repo
 /data
-/base*
 /domain
 /presentation
 
