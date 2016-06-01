@@ -1,5 +1,6 @@
 package com.racobos.dangenerator;
 
+import groovy.lang.MissingPropertyException;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.TaskAction;
 
@@ -8,14 +9,20 @@ import org.gradle.api.tasks.TaskAction;
  */
 public class DanUiTask extends DefaultTask {
 
-    String uiName = "sample";
-
-    public void setUiName(String uiName) {
-        this.uiName = uiName;
-    }
+    private static final String USAGE = "Usage: ./gradlew danGenerateUi -PuiName=<uiName>";
 
     @TaskAction
     public void danGenerateUi() {
-        new DanConsole().generateUi(uiName);
+        try {
+            String argUiName = (String) this.getProject().property("uiName");
+            if (argUiName != null) {
+                new DanConsole().generateUi(argUiName);
+            } else {
+                throw new MissingPropertyException("");
+            }
+        } catch (MissingPropertyException e) {
+            System.err.println(USAGE);
+            throw e;
+        }
     }
 }

@@ -97,4 +97,22 @@ public class PackagesProvider extends DanFileProvider {
     public static String getFragmentComponentPackage() throws IOException, DanKeyNotFoundException {
         return getValueFromDanFile(FRAGMENTCOMPONENT_PACKAGE_KEY, PACKAGES_FILE);
     }
+
+    private static final String MANIFEST_PACKAGE_KEY = "manifest_package";
+
+    public static String getManifestPackage() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(MANIFEST_PACKAGE_KEY, PACKAGES_FILE);
+    }
+
+    private static final String FRAGMENT_PACKAGE_KEY = "fragment_package";
+
+    public static String getFragmentPackage() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(FRAGMENT_PACKAGE_KEY, PACKAGES_FILE);
+    }
+
+    private static final String VIEW_PACKAGE_KEY = "view_package";
+
+    public static String getViewPackage() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(VIEW_PACKAGE_KEY, PACKAGES_FILE);
+    }
 }

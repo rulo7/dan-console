@@ -18,6 +18,8 @@ public abstract class SchemaOverrider {
     private final String ENTITY_VARNAME_TAG = "_entityname_";
     private final String UINAME_CLASSNAME_TAG = "_UiName_";
     private final String UINAME_VARNAME_TAG = "_uiName_";
+    private final String VIEWNAME_CLASSNAME_TAG = "_ViewName_";
+    private final String VIEWNAME_VARNAME_TAG = "_viewName_";
     private final String PACKAGENAME_TAG = "_packagename_";
     //Packages
     private final String APP_PACKAGENAME_TAG = "_app_package_name_";
@@ -40,6 +42,8 @@ public abstract class SchemaOverrider {
             scheme = scheme.replace(ENTITY_VARNAME_TAG, className.substring(0, 1).toLowerCase() + className.substring(1));
             scheme = scheme.replace(UINAME_CLASSNAME_TAG, className.substring(0, 1).toUpperCase() + className.substring(1));
             scheme = scheme.replace(UINAME_VARNAME_TAG, className.substring(0, 1).toLowerCase() + className.substring(1));
+            scheme = scheme.replace(VIEWNAME_CLASSNAME_TAG, className.substring(0, 1).toUpperCase() + className.substring(1));
+            scheme = scheme.replace(VIEWNAME_VARNAME_TAG, className.substring(0, 1).toLowerCase() + className.substring(1));
             scheme = scheme.replace(PACKAGENAME_TAG, getPackageName());
             scheme = scheme.replace(ENTITY_PACKAGE_TAG, PackagesProvider.getEntityPackage());
             scheme = scheme.replace(MODEL_PACKAGE_TAG, PackagesProvider.getModelPackage());

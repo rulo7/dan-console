@@ -12,10 +12,13 @@ import com.racobos.dangenerator.generators.data.entity.EntityGenerator;
 import com.racobos.dangenerator.generators.data.mapper.MapperGenerator;
 import com.racobos.dangenerator.generators.domain.model.ModelGenerator;
 import com.racobos.dangenerator.generators.domain.repository.RepositoryGenerator;
+import com.racobos.dangenerator.generators.presentation.ManifestGenerator;
 import com.racobos.dangenerator.generators.presentation.di.ActivityComponentGenerator;
 import com.racobos.dangenerator.generators.presentation.di.ApplicationComponentGenerator;
 import com.racobos.dangenerator.generators.presentation.di.ApplicationModuleGenerator;
 import com.racobos.dangenerator.generators.presentation.ui.ActivityGenerator;
+import com.racobos.dangenerator.generators.presentation.ui.FragmentGenerator;
+import com.racobos.dangenerator.generators.presentation.ui.ViewGenerator;
 import com.racobos.dangenerator.tools.FileManager;
 import com.racobos.dangenerator.tools.PathsProvider;
 import java.io.File;
@@ -42,7 +45,7 @@ public class DanConsole {
     public void generateUi(String uiName) {
         System.out.println("Generating ui flow " + uiName);
         Generator[] generators = {
-                new ActivityGenerator(), new ActivityComponentGenerator()
+                new ActivityGenerator(), new ActivityComponentGenerator(), new ManifestGenerator()
         };
         for (Generator generator : generators) {
             generator.generate(uiName);
@@ -58,14 +61,11 @@ public class DanConsole {
         } catch (IOException | DanKeyNotFoundException e) {
             e.printStackTrace();
         }
-        Generator[] generators = {};
-        //        new EntityGenerator(), new ModelGenerator(), new CacheGenerator(), new ApplicationComponentGenerator(),
-        //        new ApplicationModuleGenerator(), new DataStoreGenerator(), new DataFactoryGenerator(),
-        //        new CloudDataStoreGenerator(), new DiskDataStoreGenerator(), new MapperGenerator(),
-        //        new RepositoryGenerator(), new DataRepositoryGenerator()
-        //};
+        Generator[] generators = {
+                new FragmentGenerator(uiName), new ViewGenerator(uiName)
+        };
         for (Generator generator : generators) {
-            generator.generate(uiName);
+            generator.generate(viewName);
         }
     }
 

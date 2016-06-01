@@ -12,3 +12,6 @@ activity-component_package:presentation.internal.di.components;
 fragment-component_package:presentation.internal.di.components;
 application-module_package:presentation.internal.di.modules;
 activity_package:presentation.ui;
+manifest_package:presentation;
+fragment_package:presentation.ui;
+view_package:presentation.ui;

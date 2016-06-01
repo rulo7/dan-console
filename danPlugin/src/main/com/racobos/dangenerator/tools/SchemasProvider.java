@@ -104,9 +104,27 @@ public class SchemasProvider {
         return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, ACTIVITYCOMPONENT_SCH));
     }
 
+    private static final String MANIFEST_SCH = "AndroidManifest.sch";
+
+    public static String getManifestSchema() throws IOException {
+        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, MANIFEST_SCH));
+    }
+
     private static final String FRAGMENTCOMPONENT_SCH = "FragmentComponent.sch";
 
     public static String getFragmentComponentSchema() throws IOException {
         return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, FRAGMENTCOMPONENT_SCH));
+    }
+
+    private static final String FRAGMENT_SCH = "Fragment.sch";
+
+    public static String getFragmentSchema() throws IOException {
+        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, FRAGMENT_SCH));
+    }
+
+    private static final String VIEW_SCH = "View.sch";
+
+    public static String getViewSchema() throws IOException {
+        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, VIEW_SCH));
     }
 }

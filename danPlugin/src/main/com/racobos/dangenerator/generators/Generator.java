@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- *
  * @author rulo
  */
 public abstract class Generator {

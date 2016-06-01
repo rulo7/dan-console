@@ -87,4 +87,22 @@ public class PathsProvider extends DanFileProvider {
     public static String getFragmentComponentPath() throws IOException, DanKeyNotFoundException {
         return getValueFromDanFile(FRAGMENTCOMPONENT_PATH_KEY, PATHS_FILE);
     }
+
+    private static final String MANIFEST_PATH_KEY = "manifest_path";
+
+    public static String getManifestPath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(MANIFEST_PATH_KEY, PATHS_FILE);
+    }
+
+    private static final String FRAGMENT_PATH_KEY = "fragment_path";
+
+    public static String getFragmentPath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(FRAGMENT_PATH_KEY, PATHS_FILE);
+    }
+
+    private static final String VIEW_PATH_KEY = "view_path";
+
+    public static String getViewPath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(VIEW_PATH_KEY, PATHS_FILE);
+    }
 }
