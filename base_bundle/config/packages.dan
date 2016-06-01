@@ -8,5 +8,7 @@ model_package:domain.model;
 repository_package:domain.repository;
 usingcase_package:domain.interactor;
 application-component_package:presentation.internal.di.components;
+activity-component_package:presentation.internal.di.components;
+fragment-component_package:presentation.internal.di.components;
 application-module_package:presentation.internal.di.modules;
 activity_package:presentation.ui;

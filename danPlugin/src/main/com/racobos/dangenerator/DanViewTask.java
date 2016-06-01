@@ -1,5 +1,6 @@
 package com.racobos.dangenerator;
 
+import groovy.lang.MissingPropertyException;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.TaskAction;
 
@@ -8,19 +9,21 @@ import org.gradle.api.tasks.TaskAction;
  */
 public class DanViewTask extends DefaultTask {
 
-    String uiName = "sample";
-    String viewName = "test";
-
-    public void setUiName(String uiName) {
-        this.uiName = uiName;
-    }
-
-    public void setViewName(String viewName) {
-        this.viewName = viewName;
-    }
+    private static final String USAGE = "Usage: ./gradlew danGenerateView -PuiName=<uiName> -PviewName=<viewName>";
 
     @TaskAction
     public void danGenerateView() {
-        new DanConsole().generateView(uiName, viewName);
+        try {
+            String argUiName = (String) this.getProject().property("uiName");
+            String argViewName = (String) this.getProject().property("viewName");
+            if (argUiName != null && argViewName != null) {
+                new DanConsole().generateView(argUiName, argViewName);
+            } else {
+                throw new MissingPropertyException("");
+            }
+        } catch (MissingPropertyException e) {
+            System.err.println(USAGE);
+            throw e;
+        }
     }
 }

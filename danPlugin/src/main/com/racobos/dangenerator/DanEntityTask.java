@@ -1,5 +1,6 @@
 package com.racobos.dangenerator;
 
+import groovy.lang.MissingPropertyException;
 import java.util.Arrays;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.TaskAction;
@@ -9,16 +10,23 @@ import org.gradle.api.tasks.TaskAction;
  */
 public class DanEntityTask extends DefaultTask {
 
-    String[] entities;
-
-    public void setEntities(String[] entities) {
-        this.entities = entities;
-    }
+    private static final String USAGE = "Usage: ./gradlew danGenerateEntity -Pentities=<entity1>,<entity2>";
 
     @TaskAction
     public void danGenerateEntity() {
-        for(String entity: Arrays.asList(entities)) {
-            new DanConsole().generateEntity(entity);
+        try {
+            String entities = (String) this.getProject().property("entities");
+            if (entities != null) {
+                for(String entity: Arrays.asList(entities.split(","))) {
+                    new DanConsole().generateEntity(entity);
+                }
+            } else {
+                throw new MissingPropertyException("");
+            }
+        } catch (MissingPropertyException e) {
+            System.err.println(USAGE);
+            throw e;
         }
+
     }
 }

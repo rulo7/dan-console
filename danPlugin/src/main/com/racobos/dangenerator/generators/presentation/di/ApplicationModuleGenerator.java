@@ -1,4 +1,4 @@
-package com.racobos.dangenerator.generators.presentation;
+package com.racobos.dangenerator.generators.presentation.di;
 
 import com.racobos.dangenerator.tools.PackagesProvider;
 import com.racobos.dangenerator.exceptions.DanKeyNotFoundException;

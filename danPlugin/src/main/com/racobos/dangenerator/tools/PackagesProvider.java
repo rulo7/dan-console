@@ -8,7 +8,6 @@ import com.racobos.dangenerator.exceptions.DanKeyNotFoundException;
 import java.io.IOException;
 
 /**
- *
  * @author raulcobos
  */
 public class PackagesProvider extends DanFileProvider {
@@ -85,5 +84,17 @@ public class PackagesProvider extends DanFileProvider {
 
     public static String getActivityPackage() throws IOException, DanKeyNotFoundException {
         return getValueFromDanFile(ACTIVITY_PACKAGE_KEY, PACKAGES_FILE);
+    }
+
+    private static final String ACTIVITYCOMPONENT_PACKAGE_KEY = "activity-component_package";
+
+    public static String getActivityComponentPackage() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(ACTIVITYCOMPONENT_PACKAGE_KEY, PACKAGES_FILE);
+    }
+
+    private static final String FRAGMENTCOMPONENT_PACKAGE_KEY = "fragment-component_package";
+
+    public static String getFragmentComponentPackage() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(FRAGMENTCOMPONENT_PACKAGE_KEY, PACKAGES_FILE);
     }
 }

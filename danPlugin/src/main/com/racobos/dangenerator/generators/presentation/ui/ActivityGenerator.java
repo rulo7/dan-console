@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- *
  * @author raulcobos
  */
 public class ActivityGenerator extends Generator {
@@ -35,8 +34,9 @@ public class ActivityGenerator extends Generator {
     }
 
     @Override
-    protected File createClassFile(String entityName) throws IOException, DanKeyNotFoundException {
-        return FileManager.createFile(getClassPath() + entityName + File.separator, (entityName.substring(0, 1).toUpperCase() + entityName.substring(1)) + getPostFixClass());
+    protected File createClassFile(String uiName) throws IOException, DanKeyNotFoundException {
+        return FileManager.createFile(
+                getClassPath() + (uiName.substring(0, 1).toLowerCase() + uiName.substring(1)) + File.separator,
+                (uiName.substring(0, 1).toUpperCase() + uiName.substring(1)) + getPostFixClass());
     }
-
 }

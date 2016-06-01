@@ -8,7 +8,6 @@ import com.racobos.dangenerator.exceptions.DanKeyNotFoundException;
 import java.io.IOException;
 
 /**
- *
  * @author raulcobos
  */
 public class SchemasProvider {
@@ -97,5 +96,17 @@ public class SchemasProvider {
 
     public static String getActivitySchema() throws IOException, DanKeyNotFoundException {
         return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, ACTIVITY_SCH));
+    }
+
+    private static final String ACTIVITYCOMPONENT_SCH = "ActivityComponent.sch";
+
+    public static String getActivityComponentSchema() throws IOException {
+        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, ACTIVITYCOMPONENT_SCH));
+    }
+
+    private static final String FRAGMENTCOMPONENT_SCH = "FragmentComponent.sch";
+
+    public static String getFragmentComponentSchema() throws IOException {
+        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, FRAGMENTCOMPONENT_SCH));
     }
 }

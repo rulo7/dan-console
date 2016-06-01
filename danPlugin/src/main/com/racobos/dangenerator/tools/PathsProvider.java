@@ -4,7 +4,6 @@ import com.racobos.dangenerator.exceptions.DanKeyNotFoundException;
 import java.io.IOException;
 
 /**
- *
  * @author raulcobos
  */
 public class PathsProvider extends DanFileProvider {
@@ -75,5 +74,17 @@ public class PathsProvider extends DanFileProvider {
 
     public static String getActivityPath() throws IOException, DanKeyNotFoundException {
         return getValueFromDanFile(ACTIVITY_PATH_KEY, PATHS_FILE);
+    }
+
+    private static final String ACTIVITYCOMPONENT_PATH_KEY = "activity-component_path";
+
+    public static String getActivityComponentPath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(ACTIVITYCOMPONENT_PATH_KEY, PATHS_FILE);
+    }
+
+    private static final String FRAGMENTCOMPONENT_PATH_KEY = "fragment-component_path";
+
+    public static String getFragmentComponentPath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(FRAGMENTCOMPONENT_PATH_KEY, PATHS_FILE);
     }
 }

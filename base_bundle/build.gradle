@@ -7,11 +7,9 @@ buildscript {
     repositories {
         jcenter()
         mavenCentral()
-        /*maven {
-            url  "../repo"
-        }*/
         maven {
             url "http://dl.bintray.com/racobos/maven"
+            //url  "../repo"
         }
     }
     dependencies {
