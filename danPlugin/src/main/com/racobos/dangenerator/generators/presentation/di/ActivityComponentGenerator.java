@@ -3,7 +3,7 @@ package com.racobos.dangenerator.generators.presentation.di;
 import com.racobos.dangenerator.exceptions.DanKeyNotFoundException;
 import com.racobos.dangenerator.generators.Generator;
 import com.racobos.dangenerator.overriders.SchemaOverrider;
-import com.racobos.dangenerator.overriders.presentation.ui.ActivityComponentOverrider;
+import com.racobos.dangenerator.overriders.presentation.di.ActivityComponentOverrider;
 import com.racobos.dangenerator.tools.FileManager;
 import com.racobos.dangenerator.tools.PackagesProvider;
 import com.racobos.dangenerator.tools.PathsProvider;
@@ -50,7 +50,8 @@ public class ActivityComponentGenerator extends Generator {
 
     private void addImportsAndInjections(String uiName, File f) throws IOException, DanKeyNotFoundException {
         String readFile = FileManager.readFile(f);
-        String modelClassName = uiName.substring(0, 1).toUpperCase() + uiName.substring(1);
+        String modelClassName = uiName.substring(0, 1).toUpperCase() + uiName.substring(1) + "Activity";
+        String varClassName = uiName.substring(0, 1).toLowerCase() + uiName.substring(1) + "Activity";
         String packageName = uiName.substring(0, 1).toLowerCase() + uiName.substring(1);
         String importUiActivity = "import "
                 + PackagesProvider.getAppPackage()
@@ -60,10 +61,10 @@ public class ActivityComponentGenerator extends Generator {
                 + packageName
                 + "."
                 + modelClassName
-                + "Activity;";
-        String provideUiActivity = "void inject (" + modelClassName + "Activity " + packageName + "); ";
+                + ";";
+        String provideUiActivity = "void inject (" + modelClassName + " " + varClassName + "); ";
         String completeClass = "";
-        boolean imported = false;
+        boolean imported = readFile.contains(importUiActivity);
         for (int i = 0; i < readFile.split(";").length; i++) {
             String fileLine = readFile.split(";")[i];
             if (fileLine.contains("import") && !imported) {
@@ -71,7 +72,7 @@ public class ActivityComponentGenerator extends Generator {
                 imported = true;
             }
             completeClass += fileLine + ";";
-            if (i == readFile.split(";").length - 2) {
+            if (i == readFile.split(";").length - 2 && !readFile.contains(provideUiActivity)) {
                 completeClass += "\n\n    " + provideUiActivity;
             }
         }

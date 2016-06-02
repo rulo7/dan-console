@@ -4,7 +4,7 @@ import com.racobos.dangenerator.tools.PackagesProvider;
 import com.racobos.dangenerator.exceptions.DanKeyNotFoundException;
 import com.racobos.dangenerator.generators.Generator;
 import com.racobos.dangenerator.overriders.SchemaOverrider;
-import com.racobos.dangenerator.overriders.presentation.ApplicationModuleOverrider;
+import com.racobos.dangenerator.overriders.presentation.di.ApplicationModuleOverrider;
 import com.racobos.dangenerator.tools.FileManager;
 import com.racobos.dangenerator.tools.PathsProvider;
 import java.io.File;

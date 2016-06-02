@@ -1,4 +1,4 @@
-package com.racobos.dangenerator.overriders.presentation.ui;
+package com.racobos.dangenerator.overriders.presentation.di;
 
 import com.racobos.dangenerator.exceptions.DanKeyNotFoundException;
 import com.racobos.dangenerator.overriders.SchemaOverrider;
@@ -7,17 +7,18 @@ import com.racobos.dangenerator.tools.SchemasProvider;
 import java.io.IOException;
 
 /**
+ *
  * @author rulo
  */
-public class ActivityComponentOverrider extends SchemaOverrider {
+public class ApplicationComponentOverrider extends SchemaOverrider {
 
     @Override
     protected String getPackageName() throws IOException, DanKeyNotFoundException {
-        return PackagesProvider.getActivityComponentPackage();
+        return PackagesProvider.getApplicationComponentPackage();
     }
 
     @Override
     protected String getScheme() throws IOException, DanKeyNotFoundException {
-        return SchemasProvider.getActivityComponentSchema();
+        return SchemasProvider.getApplicationComponentSchema();
     }
 }

@@ -14,3 +14,4 @@ activity_path:presentation/src/main/java/es/raul/app/presentation/ui/;
 manifest_path:presentation/src/main/;
 fragment_path:presentation/src/main/java/es/raul/app/presentation/ui/;
 view_path:presentation/src/main/java/es/raul/app/presentation/ui/;
+presenter_path:presentation/src/main/java/es/raul/app/presentation/ui/;

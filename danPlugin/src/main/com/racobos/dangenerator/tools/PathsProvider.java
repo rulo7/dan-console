@@ -105,4 +105,10 @@ public class PathsProvider extends DanFileProvider {
     public static String getViewPath() throws IOException, DanKeyNotFoundException {
         return getValueFromDanFile(VIEW_PATH_KEY, PATHS_FILE);
     }
+
+    private static final String PRESENTER_PATH_KEY = "presenter_path";
+
+    public static String getPresenterPath() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(PRESENTER_PATH_KEY, PATHS_FILE);
+    }
 }

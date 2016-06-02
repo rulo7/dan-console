@@ -127,4 +127,10 @@ public class SchemasProvider {
     public static String getViewSchema() throws IOException {
         return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, VIEW_SCH));
     }
+
+    private static final String PRESENTER_SCH = "Presenter.sch";
+
+    public static String getPresenterSchema() throws IOException {
+        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, PRESENTER_SCH));
+    }
 }

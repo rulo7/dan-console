@@ -16,8 +16,10 @@ import com.racobos.dangenerator.generators.presentation.ManifestGenerator;
 import com.racobos.dangenerator.generators.presentation.di.ActivityComponentGenerator;
 import com.racobos.dangenerator.generators.presentation.di.ApplicationComponentGenerator;
 import com.racobos.dangenerator.generators.presentation.di.ApplicationModuleGenerator;
+import com.racobos.dangenerator.generators.presentation.di.FragmentComponentGenerator;
 import com.racobos.dangenerator.generators.presentation.ui.ActivityGenerator;
 import com.racobos.dangenerator.generators.presentation.ui.FragmentGenerator;
+import com.racobos.dangenerator.generators.presentation.ui.PresenterGenerator;
 import com.racobos.dangenerator.generators.presentation.ui.ViewGenerator;
 import com.racobos.dangenerator.tools.FileManager;
 import com.racobos.dangenerator.tools.PathsProvider;
@@ -62,7 +64,8 @@ public class DanConsole {
             e.printStackTrace();
         }
         Generator[] generators = {
-                new FragmentGenerator(uiName), new ViewGenerator(uiName)
+                new FragmentGenerator(uiName), new ViewGenerator(uiName), new FragmentComponentGenerator(uiName),
+                new PresenterGenerator(uiName)
         };
         for (Generator generator : generators) {
             generator.generate(viewName);

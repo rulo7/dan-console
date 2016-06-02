@@ -4,9 +4,9 @@ apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'com.racobos'
-def versionPlugin = '0.0.5'
+def versionPlugin = '1.0.0'
 version = versionPlugin
-def namePlugin = versionPlugin + '-experimental'
+def namePlugin = versionPlugin + '-alpha'
 
 repositories {
     mavenCentral()
@@ -76,13 +76,13 @@ uploadArchives {
 }
 
 task zipBundle(type: Zip) {
-    from ('../base_bundle/')
+    from('../base_bundle/')
     archiveName 'base_bundle.zip'
     destinationDir file('src/main/resources/') // directory that you want your archive to be placed in
 }
 
-task localUpload(dependsOn:['zipBundle','uploadArchives'])
-task remoteUpload(dependsOn:['zipBundle','publishToMavenLocal','install','bintrayUpload'])
+task localUpload(dependsOn: ['zipBundle', 'uploadArchives'])
+task remoteUpload(dependsOn: ['zipBundle', 'publishToMavenLocal', 'install', 'bintrayUpload'])
 
 uploadArchives.mustRunAfter zipBundle
 publishToMavenLocal.mustRunAfter zipBundle

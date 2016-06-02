@@ -13,22 +13,22 @@ import java.io.IOException;
 /**
  * @author raulcobos
  */
-public class FragmentSchemaOverrider extends SchemaOverrider {
+public class PresenterSchemaOverrider extends SchemaOverrider {
 
     private String uiName;
 
-    public FragmentSchemaOverrider(String uiName) {
+    public PresenterSchemaOverrider(String uiName) {
         this.uiName = uiName;
     }
 
     @Override
     protected String getPackageName() throws IOException, DanKeyNotFoundException {
-        return PackagesProvider.getFragmentPackage();
+        return PackagesProvider.getPresenterPackage();
     }
 
     @Override
     protected String getScheme() throws IOException, DanKeyNotFoundException {
-        return SchemasProvider.getFragmentSchema();
+        return SchemasProvider.getPresenterSchema();
     }
 
     @Override

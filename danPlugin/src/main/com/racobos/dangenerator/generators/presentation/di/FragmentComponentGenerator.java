@@ -1,11 +1,11 @@
 package com.racobos.dangenerator.generators.presentation.di;
 
-import com.racobos.dangenerator.tools.PackagesProvider;
 import com.racobos.dangenerator.exceptions.DanKeyNotFoundException;
 import com.racobos.dangenerator.generators.Generator;
 import com.racobos.dangenerator.overriders.SchemaOverrider;
-import com.racobos.dangenerator.overriders.presentation.di.ApplicationComponentOverrider;
+import com.racobos.dangenerator.overriders.presentation.di.FragmentComponentOverrider;
 import com.racobos.dangenerator.tools.FileManager;
+import com.racobos.dangenerator.tools.PackagesProvider;
 import com.racobos.dangenerator.tools.PathsProvider;
 import java.io.File;
 import java.io.IOException;
@@ -13,16 +13,22 @@ import java.io.IOException;
 /**
  * @author raulcobos
  */
-public class ApplicationComponentGenerator extends Generator {
+public class FragmentComponentGenerator extends Generator {
+
+    private String uiName;
+
+    public FragmentComponentGenerator(String uiName) {
+        this.uiName = uiName;
+    }
 
     @Override
-    public void generate(String entityName) {
+    public void generate(String viewName) {
         try {
             File f = FileManager.getFile(getClassPath(), getPostFixClass());
             if (!f.exists()) {
-                super.generate(entityName);
+                super.generate(viewName);
             }
-            addImportsAndInjections(entityName, f);
+            addImportsAndInjections(viewName, f);
         } catch (IOException | DanKeyNotFoundException ex) {
             System.err.println(ex.getMessage());
         }
@@ -30,17 +36,17 @@ public class ApplicationComponentGenerator extends Generator {
 
     @Override
     public SchemaOverrider getOverrider() {
-        return new ApplicationComponentOverrider();
+        return new FragmentComponentOverrider();
     }
 
     @Override
     public String getClassPath() throws IOException, DanKeyNotFoundException {
-        return PathsProvider.getApplicationComponentPath();
+        return PathsProvider.getFragmentComponentPath();
     }
 
     @Override
     public String getPostFixClass() {
-        return "ApplicationComponent.java";
+        return "FragmentComponent.java";
     }
 
     @Override
@@ -48,32 +54,32 @@ public class ApplicationComponentGenerator extends Generator {
         return FileManager.createFile(getClassPath(), getPostFixClass());
     }
 
-    private void addImportsAndInjections(String entityName, File f) throws IOException, DanKeyNotFoundException {
+    private void addImportsAndInjections(String viewName, File f) throws IOException, DanKeyNotFoundException {
         String readFile = FileManager.readFile(f);
-        String modelClassName = entityName.substring(0, 1).toUpperCase() + entityName.substring(1);
-        String importEntityRepository = "import "
+        String modelClassName = viewName.substring(0, 1).toUpperCase() + viewName.substring(1) + "Fragment";
+        String varName = viewName.substring(0, 1).toLowerCase() + viewName.substring(1) + "Fragment";
+        String packageName = uiName.substring(0, 1).toLowerCase() + uiName.substring(1) + ".views";
+        String importUiActivity = "import "
                 + PackagesProvider.getAppPackage()
                 + "."
-                + PackagesProvider.getRepositoryPackage()
+                + PackagesProvider.getFragmentPackage()
+                + "."
+                + packageName
                 + "."
                 + modelClassName
-                + "Repository;";
-        String provideEntityRepository = modelClassName
-                + "Repository "
-                + entityName.substring(0, 1).toLowerCase()
-                + entityName.substring(1)
-                + "Repository();";
+                + ";";
+        String provideUiFragment = "void inject (" + modelClassName + " " + varName + "); ";
         String completeClass = "";
-        boolean imported = readFile.contains(importEntityRepository);
+        boolean imported = readFile.contains(importUiActivity);
         for (int i = 0; i < readFile.split(";").length; i++) {
             String fileLine = readFile.split(";")[i];
             if (fileLine.contains("import") && !imported) {
-                completeClass += "\n" + importEntityRepository;
+                completeClass += "\n" + importUiActivity;
                 imported = true;
             }
             completeClass += fileLine + ";";
-            if (i == readFile.split(";").length - 2 && !readFile.contains(provideEntityRepository)) {
-                completeClass += "\n\n    " + provideEntityRepository;
+            if (i == readFile.split(";").length - 2 && !readFile.contains(provideUiFragment)) {
+                completeClass += "\n\n    " + provideUiFragment;
             }
         }
         FileManager.writeFile(f, completeClass.substring(0, completeClass.length() - 1));

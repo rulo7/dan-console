@@ -51,10 +51,11 @@ public class ManifestGenerator extends Generator {
         String activity = uiName.substring(0, 1).toUpperCase() + uiName.substring(1) + "Activity";
         String uiPackage = uiName.substring(0, 1).toLowerCase() + uiName.substring(1);
         String manifest = FileManager.readFile(f);
-        System.out.println(f.getPath());
-        String[] tags = manifest.split("</application>");
         String txt = "<activity android:name=\".ui." + uiPackage + "." + activity + "\"/>";
-        System.out.println(tags[0]);        manifest = tags[0] + "\n" + txt + "\n</application>\n" + tags[1];
-        FileManager.writeFile(f, manifest);
+        if (!manifest.contains(txt)) {
+            String[] tags = manifest.split("</application>");
+            manifest = tags[0] + "\n" + txt + "\n</application>\n" + tags[1];
+            FileManager.writeFile(f, manifest);
+        }
     }
 }

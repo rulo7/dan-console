@@ -115,4 +115,10 @@ public class PackagesProvider extends DanFileProvider {
     public static String getViewPackage() throws IOException, DanKeyNotFoundException {
         return getValueFromDanFile(VIEW_PACKAGE_KEY, PACKAGES_FILE);
     }
+
+    private static final String PRESENTER_PACKAGE_KEY = "presenter_package";
+
+    public static String getPresenterPackage() throws IOException, DanKeyNotFoundException {
+        return getValueFromDanFile(PRESENTER_PACKAGE_KEY, PACKAGES_FILE);
+    }
 }

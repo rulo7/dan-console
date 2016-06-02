@@ -1,4 +1,4 @@
-package com.racobos.dangenerator.overriders.presentation;
+package com.racobos.dangenerator.overriders.presentation.di;
 
 import com.racobos.dangenerator.exceptions.DanKeyNotFoundException;
 import com.racobos.dangenerator.overriders.SchemaOverrider;
