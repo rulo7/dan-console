@@ -8,5 +8,5 @@ public interface _Entityname_Repository {
 
     Observable<_Entityname_> _entityname_(int id);
 
-    Observable<List<_Entityname_>> _entityname_List();
+    Observable<List<_Entityname_>> _entityname_List(Integer page, Integer perPage);
 }

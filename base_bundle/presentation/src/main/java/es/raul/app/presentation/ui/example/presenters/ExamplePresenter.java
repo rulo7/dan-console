@@ -1,110 +1,135 @@
 package es.raul.app.presentation.ui.example.presenters;
 
 import android.os.Bundle;
-import android.os.Handler;
+import es.raul.app.domain.exception.DefaultErrorBundle;
+import es.raul.app.domain.model.Example;
 import es.raul.app.presentation.internal.di.scope.PerFragment;
 import es.raul.app.presentation.ui.base.BasePresenter;
+import es.raul.app.presentation.ui.example.interactors.ExampleInteractor;
 import es.raul.app.presentation.ui.example.views.ExampleView;
 import icepick.State;
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.inject.Inject;
-import timber.log.Timber;
+import rx.Subscriber;
 
 /**
  * Created by raulcobos on 31/5/16.
  */
 @PerFragment
 public class ExamplePresenter extends BasePresenter<ExampleView> {
-
-    enum RequestType {INIT, LOAD_MORE, NONE}
-
+    private final int PER_PAGE = 10;
     @State
-    ArrayList<? extends Serializable> models = new ArrayList<>();
+    ArrayList<Example> models;
     @State
     int currentPage;
     @State
-    RequestType requestType;
-
-    Handler handler = new Handler();
-
-    Runnable runnable = () -> finishAsync();
+    int selectedExampleId;
+    @State
+    HashMap<String, RequestType> requestList;
+    private ExampleInteractor exampleInteractor;
 
     @Inject
-    public ExamplePresenter() {
-        //Empty constructor
+    public ExamplePresenter(ExampleInteractor exampleInteractor) {
+        this.exampleInteractor = exampleInteractor;
     }
 
     @Override
     public void onViewCreated(Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
         if (savedInstanceState == null) {
-            requestType = RequestType.INIT;
+            init();
         }
-        switch (requestType) {
-            case INIT:
-                load();
-                return;
-            case LOAD_MORE:
-                loadMore();
-                showModels();
-                return;
-            case NONE:
-                if (!models.isEmpty()) {
-                    showModels();
-                } else {
-                    showEmpty();
-                }
+        for (Map.Entry<String, RequestType> request : requestList.entrySet()) {
+            switch (request.getValue()) {
+                case INIT:
+                    init();
+                    break;
+                case LOAD_MORE:
+                    loadMore();
+                    break;
+                case LOAD_DETAIL:
+                    printDetail(selectedExampleId);
+                    break;
+            }
         }
     }
 
-    private void showModels() {
-        if (getView() != null) {
-            getView().hideLoadMore();
-            getView().hideLoading();
-            getView().showModels();
-        }
-    }
-
-    private void showEmpty() {
-        Timber.i("[showEmpty]");
-        getView().hideLoading();
-        getView().showEmpty();
-    }
-
-    public void load() {
-        Timber.i("[load]");
-        getView().showLoading();
+    public void init() {
         currentPage = 0;
-        models.clear();
-        requestType = RequestType.INIT;
-        async();
+        models = new ArrayList<>();
+        String requestId = generateUniqueId();
+        requestList.put(requestId, RequestType.INIT);
+        getView().showLoading();
+        loadExamples(requestId);
     }
 
     public void loadMore() {
-        Timber.i("[loadMore]");
+        String requestId = generateUniqueId();
+        requestList.put(requestId, RequestType.LOAD_MORE);
         getView().showLoadMore();
-        requestType = RequestType.LOAD_MORE;
-        async();
+        loadExamples(requestId);
     }
 
-    private void async() {
-        Timber.i("[async]");
-        handler.postDelayed(runnable, 10000);
+    public void printDetail(int id) {
+        this.selectedExampleId = id;
+        String requestId = generateUniqueId();
+        requestList.put(requestId, RequestType.LOAD_DETAIL);
+        getView().showLoading();
+        exampleInteractor.getExample(id, new Subscriber<Example>() {
+            @Override
+            public void onCompleted() {
+                finishRequest(requestId);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                getView().showError(new DefaultErrorBundle(new Exception(e)));
+                finishRequest(requestId);
+            }
+
+            @Override
+            public void onNext(Example example) {
+                getView().showDetail(example);
+            }
+        });
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        handler.removeCallbacks(runnable);
+    private void loadExamples(String requestId) {
+        exampleInteractor.getExamples(new Subscriber<List<Example>>() {
+            @Override
+            public void onCompleted() {
+                currentPage++;
+                finishRequest(requestId);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                getView().showError(new DefaultErrorBundle(new Exception(e)));
+                finishRequest(requestId);
+            }
+
+            @Override
+            public void onNext(List<Example> examples) {
+                models.addAll(examples);
+            }
+        }, currentPage, PER_PAGE);
     }
 
-    public void finishAsync() {
-        Timber.i("[finishAsync]");
-        requestType = RequestType.NONE;
-        currentPage++;
-        //add(? extends Serializable);
-        showModels();
+    public void finishRequest(String id) {
+        requestList.remove(id);
+        if (models.isEmpty()) {
+            getView().showEmpty();
+        } else {
+            getView().hideEmpty();
+            getView().showModels(models);
+        }
+        getView().hideLoading();
+        getView().hideLoadMore();
     }
+
+    enum RequestType {INIT, LOAD_MORE, LOAD_DETAIL}
 }
 

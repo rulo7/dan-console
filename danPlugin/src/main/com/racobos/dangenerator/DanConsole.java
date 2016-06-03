@@ -12,6 +12,8 @@ import com.racobos.dangenerator.generators.data.entity.EntityGenerator;
 import com.racobos.dangenerator.generators.data.mapper.MapperGenerator;
 import com.racobos.dangenerator.generators.domain.model.ModelGenerator;
 import com.racobos.dangenerator.generators.domain.repository.RepositoryGenerator;
+import com.racobos.dangenerator.generators.domain.usingcases.DetailUseCaseGenerator;
+import com.racobos.dangenerator.generators.domain.usingcases.ListUseCaseGenerator;
 import com.racobos.dangenerator.generators.presentation.ManifestGenerator;
 import com.racobos.dangenerator.generators.presentation.di.ActivityComponentGenerator;
 import com.racobos.dangenerator.generators.presentation.di.ApplicationComponentGenerator;
@@ -37,7 +39,8 @@ public class DanConsole {
                 new EntityGenerator(), new ModelGenerator(), new CacheGenerator(), new ApplicationComponentGenerator(),
                 new ApplicationModuleGenerator(), new DataStoreGenerator(), new DataFactoryGenerator(),
                 new CloudDataStoreGenerator(), new DiskDataStoreGenerator(), new MapperGenerator(),
-                new RepositoryGenerator(), new DataRepositoryGenerator()
+                new RepositoryGenerator(), new DataRepositoryGenerator(), new DetailUseCaseGenerator(),
+                new ListUseCaseGenerator()
         };
         for (Generator generator : generators) {
             generator.generate(entity);

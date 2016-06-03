@@ -77,19 +77,25 @@ public class ApplicationModuleGenerator extends Generator {
                 + "return dataRepository;\n"
                 + "";
         String completeClass = "";
-        boolean imported = false;
-        for (int i = 0; i < readFile.split(";").length; i++) {
-            String fileLine = readFile.split(";")[i];
-            if (fileLine.contains("import") && !imported) {
-                completeClass += "\n" + importEntityRepository;
-                completeClass += "\n" + importEntityDataRepository;
-                imported = true;
+        boolean importedDataRepository = readFile.contains(importEntityDataRepository);
+        boolean importedRepository = readFile.contains(importEntityRepository);
+        if (!importedDataRepository && !importedRepository) {
+            for (int i = 0; i < readFile.split(";").length; i++) {
+                String fileLine = readFile.split(";")[i];
+                if (fileLine.contains("import") && !importedRepository) {
+                    completeClass += "\n" + importEntityRepository;
+                    importedRepository = true;
+                }
+                if (fileLine.contains("import") && !importedDataRepository) {
+                    completeClass += "\n" + importEntityDataRepository;
+                    importedDataRepository = true;
+                }
+                completeClass += fileLine + ";";
+                if (i == readFile.split(";").length - 2 && !readFile.contains(provideEntityDataRepository)) {
+                    completeClass += "\n}" + provideEntityDataRepository;
+                }
             }
-            completeClass += fileLine + ";";
-            if (i == readFile.split(";").length - 2) {
-                completeClass += "\n}" + provideEntityDataRepository;
-            }
+            FileManager.writeFile(f, completeClass.substring(0, completeClass.length() - 1));
         }
-        FileManager.writeFile(f, completeClass.substring(0, completeClass.length() - 1));
     }
 }

@@ -54,7 +54,7 @@ public class PathsProvider extends DanFileProvider {
 
     private static final String USINGCASE_PACKAGE_PATH_KEY = "usingcase_path";
 
-    public static String getUsingCasePath() throws IOException, DanKeyNotFoundException {
+    public static String getUseCasePath() throws IOException, DanKeyNotFoundException {
         return getValueFromDanFile(USINGCASE_PACKAGE_PATH_KEY, PATHS_FILE);
     }
 

@@ -18,7 +18,7 @@ public class _Entityname_CloudDataStore implements _Entityname_DataStore {
     }
 
     @Override
-    public Observable<List<_Entityname_Entity>> _entityname_List() {
+    public Observable<List<_Entityname_Entity>> _entityname_List(Integer page, Integer perPage) {
         //Refill here
         return null;
     }

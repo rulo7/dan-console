@@ -20,8 +20,8 @@ public class _Entityname_DataRepository implements _Entityname_Repository {
     }
 
     @Override
-    public Observable<List<_Entityname_>> _entityname_List() {
-        return dataFactory.createCloudDataStore()._entityname_List().map(_entityname_Entity -> mapper.transform(_entityname_Entity));
+    public Observable<List<_Entityname_>> _entityname_List(Integer page, Integer perPage) {
+        return dataFactory.createCloudDataStore()._entityname_List(page, perPage).map(_entityname_Entity -> mapper.transform(_entityname_Entity));
     }
 
     @Override

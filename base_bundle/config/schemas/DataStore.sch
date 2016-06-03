@@ -5,7 +5,7 @@ import java.util.List;
 import rx.Observable;
 
 public interface _Entityname_DataStore {
-    Observable<List<_Entityname_Entity>> _entityname_List();
+    Observable<List<_Entityname_Entity>> _entityname_List(Integer page, Integer perPage);
 
     Observable<_Entityname_Entity> _entityname_(int id);
 }

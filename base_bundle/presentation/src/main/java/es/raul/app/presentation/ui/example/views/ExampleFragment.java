@@ -1,16 +1,12 @@
 package es.raul.app.presentation.ui.example.views;
 
-import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import butterknife.OnClick;
 import es.raul.app.domain.exception.ErrorBundle;
-import es.raul.app.presentation.R;
+import es.raul.app.domain.model.Example;
 import es.raul.app.presentation.ui.base.BaseFragment;
 import es.raul.app.presentation.ui.base.BasePresenter;
 import es.raul.app.presentation.ui.example.presenters.ExamplePresenter;
+import java.util.ArrayList;
 import javax.inject.Inject;
 
 /**
@@ -23,58 +19,52 @@ public class ExampleFragment extends BaseFragment implements ExampleView {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_test, container, false);
-    }
-
-
-    @Nullable
-    @Override
     protected BasePresenter getPresenter() {
         return testPresenter;
     }
 
     @Override
     public void showError(ErrorBundle errorBundle) {
-    }
-
-    @OnClick(R.id.start_async)
-    void onLoadAsync() {
-        testPresenter.load();
-    }
-
-
-    @OnClick(R.id.load_more_async)
-    void onLoadMoreAsync() {
-        testPresenter.loadMore();
-    }
-
-    @Override
-    public void showModels() {
+        // show an error information
     }
 
     @Override
     public void hideEmpty() {
+        // hide the empty placeholder
     }
 
     @Override
     public void showLoading() {
+        // show the normal loading progress
     }
 
     @Override
     public void hideLoading() {
+        // hide the normal loading progress
     }
 
     @Override
     public void showEmpty() {
+        // show the empty placeholder
     }
 
     @Override
     public void hideLoadMore() {
+        // hide the loading progress in the bottom of the list
+    }
+
+    @Override
+    public void showModels(ArrayList<Example> examples) {
+        // show the examples in the list
+    }
+
+    @Override
+    public void showDetail(Example example) {
+        // call to navigator and show the example
     }
 
     @Override
     public void showLoadMore() {
+        // show the loading progress in the bottom of the list
     }
 }

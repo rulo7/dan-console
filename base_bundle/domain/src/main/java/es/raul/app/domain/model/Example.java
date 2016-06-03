@@ -1,8 +1,8 @@
-package _app_package_name_._packagename_;
+package es.raul.app.domain.model;
 
 import java.io.Serializable;
 
-public class _Entityname_ implements Serializable{
+public class Example implements Serializable{
     private int id;
 
     public int getId(){

@@ -3,6 +3,7 @@ package es.raul.app.presentation.ui.base;
 import android.content.Intent;
 import android.os.Bundle;
 import timber.log.Timber;
+import java.util.UUID;
 
 /**
  * Created by guillermoguerrero on 2/3/16.
@@ -41,5 +42,9 @@ public abstract class BasePresenter<T extends BaseView> {
 
     public T getView() {
         return view;
+    }
+
+    public String generateUniqueId() {
+        return UUID.randomUUID().toString();
     }
 }

@@ -4,7 +4,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'com.racobos'
-def versionPlugin = '1.0.0'
+def versionPlugin = '1.0.1'
 version = versionPlugin
 def namePlugin = versionPlugin + '-alpha'
 

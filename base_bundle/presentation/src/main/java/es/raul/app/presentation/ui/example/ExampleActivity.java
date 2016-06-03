@@ -13,7 +13,7 @@ public class ExampleActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             replaceFragment(R.id.fl_fragment, new ExampleFragment(), false);
         }
     }

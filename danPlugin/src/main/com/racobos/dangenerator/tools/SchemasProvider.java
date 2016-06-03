@@ -74,10 +74,16 @@ public class SchemasProvider {
         return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, REPOSITORY_SCH));
     }
 
-    private static final String USINGCASE_SCH = "UsingCase.sch";
+    private static final String DETAIL_USECASE_SCH = "DetailUseCase.sch";
 
-    public static String getUsingCaseSchema() throws IOException, DanKeyNotFoundException {
-        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, USINGCASE_SCH));
+    public static String getDetailUseCaseSchema() throws IOException, DanKeyNotFoundException {
+        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, DETAIL_USECASE_SCH));
+    }
+
+    private static final String LIST_USECASE_SCH = "ListUseCase.sch";
+
+    public static String getListUseCaseSchema() throws IOException, DanKeyNotFoundException {
+        return FileManager.readFile(FileManager.getFile(SCHEMAS_PATH, LIST_USECASE_SCH));
     }
 
     private static final String APPLICATIONCOMPONENT_SCH = "ApplicationComponent.sch";

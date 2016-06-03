@@ -6,7 +6,7 @@ datarepository_package:data.repository;
 datastore_package:data.repository.datasource;
 model_package:domain.model;
 repository_package:domain.repository;
-usingcase_package:domain.interactor;
+usingcase_package:domain.usingcases;
 application-component_package:presentation.internal.di.components;
 activity-component_package:presentation.internal.di.components;
 fragment-component_package:presentation.internal.di.components;

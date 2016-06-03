@@ -5,7 +5,7 @@ datarepository_path:data/src/main/java/es/raul/app/data/repository/;
 datastore_path:data/src/main/java/es/raul/app/data/repository/datasource/;
 model_path:domain/src/main/java/es/raul/app/domain/model/;
 repository_path:domain/src/main/java/es/raul/app/domain/repository/;
-usingcase_path:domain/src/main/java/es/raul/app/domain/interactor/;
+usingcase_path:domain/src/main/java/es/raul/app/domain/usingcases/;
 application-component_path:presentation/src/main/java/es/raul/app/presentation/internal/di/components/;
 activity-component_path:presentation/src/main/java/es/raul/app/presentation/internal/di/components/;
 fragment-component_path:presentation/src/main/java/es/raul/app/presentation/internal/di/components/;
