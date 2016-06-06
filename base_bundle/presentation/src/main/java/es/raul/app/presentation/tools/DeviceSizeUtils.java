@@ -8,6 +8,10 @@ import android.util.TypedValue;
  */
 public class DeviceSizeUtils {
 
+    private DeviceSizeUtils(){
+        //Empty private constructor for no errors in sonar
+    }
+
     public static int getScreenWidth(Context context) {
         return context.getResources().getDisplayMetrics().widthPixels;
     }

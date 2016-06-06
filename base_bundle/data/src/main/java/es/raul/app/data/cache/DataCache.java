@@ -29,7 +29,7 @@ public abstract class DataCache<T> {
     private final ThreadExecutor threadExecutor;
 
     public DataCache(Context context, JsonSerializer<T> userCacheSerializer, FileManager fileManager,
-                     ThreadExecutor executor) {
+            ThreadExecutor executor) {
         if (context == null || userCacheSerializer == null || fileManager == null || executor == null) {
             throw new IllegalArgumentException("Invalid null parameter");
         }
@@ -106,7 +106,7 @@ public abstract class DataCache<T> {
     public boolean isExpired() {
         long currentTime = System.currentTimeMillis();
         long lastUpdateTime = this.getLastCacheUpdateTimeMillis();
-        boolean expired = ((currentTime - lastUpdateTime) > EXPIRATION_TIME);
+        boolean expired = currentTime - lastUpdateTime > EXPIRATION_TIME;
         if (expired) {
             this.evictAll();
         }

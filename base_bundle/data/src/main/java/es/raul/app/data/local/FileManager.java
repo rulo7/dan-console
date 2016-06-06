@@ -2,8 +2,6 @@ package es.raul.app.data.local;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,15 +11,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import timber.log.Timber;
 
 /**
  * Created by djuarez on 21/3/16.
  */
+
 @Singleton
 public class FileManager {
+
+    private static final String LOG_TAG = FileManager.class.getSimpleName();
 
     @Inject
     public FileManager() {
@@ -32,10 +33,9 @@ public class FileManager {
         try {
             FileWriter writer = new FileWriter(file);
             writer.write(fileContent);
-            writer.flush();
             writer.close();
         } catch (IOException e) {
-            Log.e(FileManager.class.getSimpleName(), e.getMessage());
+            Timber.e(e, LOG_TAG);
         }
     }
 
@@ -47,11 +47,10 @@ public class FileManager {
             while ((bytesRead = inputStream.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, bytesRead);
             }
-            outputStream.flush();
             outputStream.close();
             inputStream.close();
         } catch (IOException e) {
-            Log.e(FileManager.class.getSimpleName(), e.getMessage());
+            Timber.e(e, LOG_TAG);
         }
     }
 
@@ -68,7 +67,7 @@ public class FileManager {
                 bufferedReader.close();
                 fileReader.close();
             } catch (IOException e) {
-                Log.e(FileManager.class.getSimpleName(), e.getMessage());
+                Timber.e(e, LOG_TAG);
             }
         }
         return fileContentBuilder.toString();
@@ -92,14 +91,25 @@ public class FileManager {
         editor.apply();
     }
 
+    public void writeToPreferences(SharedPreferences sharedPreferences, String key, String value) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.apply();
+    }
+
     public long getFromPreferences(SharedPreferences sharedPreferences, String key) {
         return sharedPreferences.getLong(key, 0);
+    }
+
+    public String getStringPreferences(SharedPreferences sharedPreferences, String key) {
+        return sharedPreferences.getString(key, "");
     }
 
     public String readFileContentFromAssets(Context context, String filename) {
         StringBuilder total = new StringBuilder();
         try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
+            BufferedReader bufferedReader =
+                    new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
             total = new StringBuilder();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -107,9 +117,12 @@ public class FileManager {
             }
             bufferedReader.close();
         } catch (IOException e) {
-            Log.e(FileManager.class.getSimpleName(), e.getMessage());
+            Timber.e(e, LOG_TAG);
         }
-
         return total.toString();
+    }
+
+    public void clearSharedPreference(SharedPreferences sharedPreferences) {
+        sharedPreferences.edit().clear().apply();
     }
 }

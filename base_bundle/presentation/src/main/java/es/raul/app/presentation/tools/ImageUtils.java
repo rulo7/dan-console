@@ -9,6 +9,10 @@ import com.bumptech.glide.Glide;
  */
 public class ImageUtils {
 
+    private ImageUtils() {
+        //Empty private constructor by sonar
+    }
+
     public static void print(ImageView imageView, String src) {
         imageView.post(() -> {
             if (imageView != null && imageView.getContext() != null) {

@@ -54,7 +54,7 @@ public class ExampleFragment extends BaseFragment implements ExampleView {
     }
 
     @Override
-    public void showModels(ArrayList<Example> examples) {
+    public void showModels(List<Example> examples) {
         // show the examples in the list
     }
 

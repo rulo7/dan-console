@@ -20,7 +20,7 @@ import rx.Subscriber;
  */
 @PerFragment
 public class ExamplePresenter extends BasePresenter<ExampleView> {
-    private final int PER_PAGE = 10;
+    private static final int PER_PAGE = 10;
     @State
     ArrayList<Example> models;
     @State

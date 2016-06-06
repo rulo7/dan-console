@@ -30,6 +30,7 @@ public class UIThread implements es.raul.app.domain.executor.PostExecutionThread
 
     @Inject
     public UIThread() {
+        //Empty constructor by SonarQube
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public interface ExampleView extends BaseLoadDataView {
 
-    void showModels(ArrayList<Example> examples);
+    void showModels(List<Example> examples);
 
     void showDetail(Example example);
 

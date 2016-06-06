@@ -24,10 +24,6 @@ public abstract class BasePresenter<T extends BaseView> {
         Timber.i("[onPause]");
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Timber.i("[onActivityResult]");
-    }
-
     public void onViewCreated(Bundle savedInstanceState) {
         Timber.i("[onViewCreated]");
     }
