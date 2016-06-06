@@ -106,7 +106,9 @@ public class DanConsole {
         //6. replace imports
         replaceImports(new File("."), originalPackage, packageName);
         //7. replace AppName
-        replaceInside(new File("./presentation/src/main/res/values/strings.xml"), originalAppName, appName);
+        replaceInside(new File("./presentation/src/main/res/values/strings.xml"),
+                "<string name=\"app_name\">" + originalAppName + "</string>",
+                "<string name=\"app_name\">" + appName + "</string>");
         //8. replace presentation proguard-rules
         replaceInside(new File("./presentation/proguard-rules.pro"), originalPackage, packageName);
     }

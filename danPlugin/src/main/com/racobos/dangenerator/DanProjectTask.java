@@ -10,8 +10,8 @@ public class DanProjectTask extends DefaultTask {
 
     String originalPackageSyntax = "es.raul.app";
     String packageSyntax = "com.sample.app";
-    String appName = "app";
-    String originalAppName = "DAN-Example";
+    String appName;
+    String originalAppName = "app";
 
     public void setPackageSyntax(String packageSyntax) {
         this.packageSyntax = packageSyntax;
